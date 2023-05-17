@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AnsichtComponent } from './ansicht/ansicht.component';
+import { FormularComponent } from './formular/formular.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { AnsichtComponent } from './ansicht/ansicht.component';
     HomeComponent,
     NavbarComponent,
     FooterComponent,
-    AnsichtComponent
+    AnsichtComponent,
+    FormularComponent
   ],
   imports: [
     BrowserModule,
