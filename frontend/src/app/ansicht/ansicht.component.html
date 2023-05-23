@@ -1,1 +1,28 @@
-<p>ansicht works!</p>
+<div class="header">
+    <h1><b>Alle deine bisherigen PrimeInsights Inhalte</b></h1>
+    <p>Deine News für deinen Channel</p>
+  </div>
+
+<div *ngIf="!deleted" id="alles" class="row row-cols-1 row-cols-md-3 g-4" >
+    <div class="col" *ngFor="let ansicht of ansichts; ">
+      
+        <div class="card-body">
+          
+              <!-- <li class="list-group-item"><span class="text-black-50">Bild: </span>{{ poesies.bild }}</li> -->  
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span class="text-black-50">Titel: </span>{{ formular.title }}</li>
+                <li class="list-group-item"><span type="date" class="text-black-50">Datum: </span>{{ stringAsDate(formular.datum) | date:'dd.MM.YYYY' }}</li> <!--Richtige Datumsformatierung  -->
+                <textarea rows="7">{{ poesies.text }}</textarea>
+                </ul>
+            
+             <div class="form-group row justify-content-end" >
+                <div class="col"> 
+                <button [routerLink]="['/formularbearbeiten', formular._id]" id="bearbeiten">Bearbeiten</button></div> <!-- routerlink zur poesie-w -->
+                <div class="col">
+                <button type="button" (click)="delete(formular._id)" id="löschen">Löschen</button> 
+          
+            </div>
+       </div>       
+    </div>
+</div>
+</div>
