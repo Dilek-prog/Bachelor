@@ -1,10 +1,14 @@
 from django.urls import include, path
-from .views import post_detail, post_list
+from rest_framework import views
+from rest_framework.urlpatterns import format_suffix_patterns
+from .views import PostDetail, PostList
 
 urlpatterns = [
-    path("posts/", post_list),
-    path("posts/<int:pk>/", post_detail)
+    path("posts/", PostList.as_view()),
+    path("posts/<int:pk>/", PostDetail.as_view())
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
 
 
 
