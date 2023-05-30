@@ -6,7 +6,7 @@ class Post(models.Model):
     title = models.TextField()
     text = models.TextField()
     pub_date = models.DateTimeField() #publication date
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey("auth.user", on_delete=models.CASCADE, related_name='posts')
     channel = models.TextField()
     posted = models.BooleanField(default=False)
 

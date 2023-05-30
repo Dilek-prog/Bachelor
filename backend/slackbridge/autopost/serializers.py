@@ -2,7 +2,8 @@ from .models import Post
 from rest_framework import serializers
 
 
-class PostSerializer(serializers.HyperlinkedModelSerializer):
+class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ['url', 'title', 'text', 'channel', 'pub_date']
+        user = serializers.ReadOnlyField(source="user.username")
+        fields = ['title', 'text', 'channel', 'pub_date']
