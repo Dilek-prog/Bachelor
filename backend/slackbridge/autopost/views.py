@@ -14,7 +14,7 @@ from rest_framework import generics
 from .models import Post
 from .serializers import PostSerializer
 
-class PostList(generics.ListCreateAPIView):
+class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -23,10 +23,4 @@ class PostList(generics.ListCreateAPIView):
     
     def get_queryset(self):
         return Post.objects.filter(user=self.request.user)
-
-class PostDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-    permission_classes = [permissions.IsAuthenticated, IsOwner]
-
 
