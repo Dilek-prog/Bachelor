@@ -1,0 +1,53 @@
+.text-white{
+    margin-left: 22px;
+}
+
+.h1{
+    font-size: 30px;
+}
+
+.p{
+    color: #fff; 
+    font-size: 25px;
+}
+
+.navbar{
+    text-align: left;
+}
+
+.Interview{
+    font-size: 30px;
+}
+
+.table{
+    border: 1px solid;
+    padding: 70px;
+    margin: 40px;
+    box-shadow: 1px 4px 8px;
+    width: 10px;
+}
+
+.posted-icon{
+    text-align: center;
+}
+
+.posted-icon .fa-clock {
+    color: #f0f;
+}
+
+.img {
+    width: 90px;
+    height: 50px;
+    margin: 10px;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.about{
+background: blue;
+padding: 66px;
+padding-bottom: 40px;
+text-align: center;
+}
