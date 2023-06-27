@@ -1,11 +1,3 @@
-.text-white{
-    margin-left: 22px;
-}
-
-.h1{
-    font-size: 30px;
-}
-
 .p{
     color: #fff; 
     font-size: 25px;
@@ -13,18 +5,12 @@
 
 .navbar{
     text-align: left;
-}
-
-.Interview{
-    font-size: 30px;
+    margin-bottom: 20px;
 }
 
 .table{
-    border: 1px solid;
-    padding: 70px;
-    margin: 40px;
-    box-shadow: 1px 4px 8px;
-    width: 10px;
+    border-collapse: collapse;
+    font-family: Tahoma, Geneva, sans-serif;
 }
 
 .posted-icon{
@@ -32,7 +18,7 @@
 }
 
 .posted-icon .fa-clock {
-    color: #f0f;
+    color: rgba(194, 50, 50, 0.973);
 }
 
 .img {
@@ -41,13 +27,29 @@
     margin: 10px;
 }
 
-.navbar {
-    margin-bottom: 20px;
+.post-detail-container {
+    background-color: aliceblue;
+    padding: 0 1rem;
+    margin: 3rem auto 6rem;
+    max-width: 40rem;
 }
 
-.about{
-background: blue;
-padding: 66px;
-padding-bottom: 40px;
-text-align: center;
+.post-detail-button-group {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.main-content {
+    min-height: 100%;
+    margin-bottom: -50px;
+}
+
+.footer, .push {
+    height: 50px;
+    background-color: aqua;
 }
