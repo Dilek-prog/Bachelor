@@ -1,16 +1,55 @@
-.p{
-    color: #fff; 
-    font-size: 25px;
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: lightblue;
 }
 
 .navbar{
     text-align: left;
     margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.navbar a.active {
+    border-bottom: 3px solid red;
+}
+
+.nav{
+    flex-direction: row;
+    width: 50%;
+    font-size: 20px;
+    font-weight: 200;
+    text-decoration: none;
+    padding-left: 20px;
+}
+
+.img {
+    width: 90px;
+    height: 50px;
+    margin: 10px;
+}
+
+.logout{
+    text-align: right;
+    font-size: 20px;
+    overflow: hidden;
+    flex-direction: row;
+    width: 50%;
+    font-weight: 200;
+    text-decoration: none;
 }
 
 .table{
     border-collapse: collapse;
     font-family: Tahoma, Geneva, sans-serif;
+    margin-top: 60px;
+    margin-left: 0;
+    box-shadow: #6c6c6c;
+}
+
+.abbrechen-bt {
+    margin-left: 20px;
 }
 
 .posted-icon{
@@ -19,12 +58,6 @@
 
 .posted-icon .fa-clock {
     color: rgba(194, 50, 50, 0.973);
-}
-
-.img {
-    width: 90px;
-    height: 50px;
-    margin: 10px;
 }
 
 .post-detail-container {
@@ -39,9 +72,45 @@
     padding-bottom: 1rem;
 }
 
-html, body {
-    height: 100%;
-    margin: 0;
+.card1{
+    margin-bottom: 20px;
+    width: 70%;
+    margin-left: 50px;
+}
+
+.card2{
+    margin-bottom: 20px;
+    width: 70%;
+    margin-left: 50px;
+}
+
+.card3{
+    margin-left: 50px;
+    margin-bottom: 20px;
+    width: 70%;
+}
+
+.section-title h2{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1px;
+    letter-spacing: 2px;
+    color: #aaaaaa;
+    font-family:"Poppins", sans-serif ;
+}
+
+.section-title h2::after {
+    content: "";
+    width: 120px;
+    height: 1px;
+    display: inline-block;
+    background: #5f7ed4;
+    margin: 4px 10px;
+}
+
+.h1{
+    text-align: center;
+    text-shadow: 1px 1px 1px #6c6c6c;
 }
 
 .main-content {
@@ -51,5 +120,24 @@ html, body {
 
 .footer, .push {
     height: 50px;
-    background-color: aqua;
+    background-color: rgb(217, 221, 221);
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    position:relative;
+}
+
+.section-title Vision {
+    margin:0;
+    font-size: 0;
+    font-size: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family:"Poppins", sans-serif ;
+    color:#2a2c39;
+}
+
+.Vision {
+    font-size: 36px;
 }
