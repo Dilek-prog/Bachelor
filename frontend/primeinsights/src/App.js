@@ -9,6 +9,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavbarToggle from 'react-bootstrap/esm/NavbarToggle';
 import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { useState, useRef } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
@@ -84,11 +86,16 @@ function PostDetails({ token }) {
 
   const { id } = useParams();
   const navigate = useNavigate();
-
+  const [confirmDeleteModal, setConfirmDeleteModal] = useState(false);
+  
   let { isLoading, isError, data, error } = useQuery({
     queryFn: () => { return getPost(token, id) },
     queryKey: ['post', id],
   });
+
+  function handleClickCancelDelete() { //Abbrechen des Modal und schließt ihn 
+    setConfirmDeleteModal(false);
+  }
 
   function handleSuccess(result) {
     navigate('/posts');
@@ -129,6 +136,11 @@ function PostDetails({ token }) {
         <div className="post-detail-button-group">
           <DeleteButton token={token} id={id} onSuccess={handleSuccess}/>
         </div>
+        <Link to="/posts">
+        <Button variant="secondary" onClick={handleClickCancelDelete} className="abbrechen-bt">
+          Abbrechen
+        </Button>
+      </Link>
       </Container>
     </>
   )
@@ -221,7 +233,7 @@ function PostList({ token }) {
 
   return (
     <Container className="table">
-      <Table striped bordered hover>
+      <Table striped bordered hover className="shaow-lg text-center">
         <thead>
           <tr>
             <th>Titel</th>
@@ -239,7 +251,7 @@ function PostList({ token }) {
             return (
               <tr>
                 <td>
-                  <Link to={`/posts/${post.id}`}>
+                  <Link style={{color: 'black',textDecoration: 'none'}} to={`/posts/${post.id}`}>
                     {post.title}
                   </Link>
                 </td>
@@ -262,7 +274,88 @@ function PostList({ token }) {
 function Welcome({ token }) {
   return (
     <>
-      <h1>Willkommen in PrimeInsights</h1>
+    <h1 className="h1">Willkommen in PrimeInsights</h1>
+    <Container fluid className="Container1">
+    <div className="grid-container">
+      <div>
+          <div>
+            <div>
+            <br/>
+            <br/>
+              <h1 className="">PrimeInsights</h1>
+              <p></p>
+              <div className="grid-item">
+                <h3 className="">Um Verwaltung und internen sowie externen Professor:innen, 
+                Dozent:innen und wissenschaftliche Mitarbeiter:innen eine Möglichkeit zu bieten, 
+                ohne die Slack-App auf ihren Endgeräten Nachrichten zu posten, 
+                wurde die PrimeInsights-Webanwendung programmiert.</h3>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    </Container>
+    <br/>
+    <Container fluid>
+      <div className="section-title">
+        <h2 className="projekt">Projekt</h2>
+        <p className="Vision">Vision</p>
+      </div>
+      <div className="col-lg-12">
+        <p>Um Verwaltung und internen sowie externen Professor:innen, 
+          Dozent:innen und wissenschaftliche Mitarbeiter:innen eine Möglichkeit zu bieten, 
+          ohne die Slack-App auf ihren Endgeräten Nachrichten zu posten, 
+          wird die PrimeInsights-Webanwendung programmiert.
+        </p>
+        <p>Die Handhabung unserer Anwendung ist unkompliziert und für den Laien gut verständlich. Zudem
+            sind nur notwendige Anwendungen und Funktionen vorhanden, um eine einfache Bedienung zu
+            gewährleisten. Anders als Produkte der Wettbewerber ist unsere Anwendung auf das wenstlichste
+            fokussiert und als OpenSource-APM kostenfrei.   
+        </p>
+      </div>
+    </Container>
+    <Container fluid>
+    <h1 className="technologien">VERWENDETE TECHNOLOGIEN</h1>
+    <br/>
+      <Row xs={1} md={2} lg={3} className="cards">
+        <Col>
+          <Card className="card1">
+          <Card.Header as="h5">React</Card.Header>
+          <Card.Body>
+          <div className="bild">
+            <img scr="Bild.JPG" fluid width="64" height="64"/>
+          </div>
+            <Card.Text>
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </Card.Text>
+           </Card.Body>
+          </Card>
+        </Col>
+        <Col>
+          <Card className="card2">
+          <Card.Header as="h5">Django</Card.Header>
+          <Card.Body>
+            <Card.Text>
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </Card.Text>
+           </Card.Body>
+          </Card>
+        </Col>
+        <Col>
+          <Card className="card3">
+          <Card.Header as="h5">React Bootstrap</Card.Header>
+          <Card.Body>
+            <Card.Text>
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </Card.Text>
+           </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
     </>
   )
 }
@@ -273,21 +366,26 @@ function Homepage({ token }) {
     <>
       <div>
         <Navbar sticky="top" bg="light" expand="lg" className="navbar">
-          <Image src="favicon.ico" className="img" alt="" rounded />
+           <Image src="favicon.ico" className="img" alt="" rounded />
           <NavbarToggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="nav">
               <Nav.Link href="#home">
-                <Link to="/">
+                <Link style={{color: 'black',textDecoration: 'none'}} to="/">
                   Home
                 </Link>
               </Nav.Link>
               <Nav.Link href="#Ansicht">
-                <Link to="/posts">
+                <Link style={{color: 'black', textDecoration: 'none'}} to="/posts">
                   Posts
                 </Link>
               </Nav.Link>
             </Nav>
+            <Nav.Link href="#logout" className="logout">
+                <Link style={{color: 'black', textDecoration: 'none'}} to="/logout">
+                  logout
+                </Link>
+              </Nav.Link>
           </Navbar.Collapse>
         </Navbar>
       </div>
@@ -298,15 +396,25 @@ function Homepage({ token }) {
           <Route path='/posts' element={<PostList token={token} />} />
           <Route path='*' element={<Welcome token={token} />} />
         </Routes>
-        <div class="push"></div>
+        <div className="push"></div>
       </div>
-      <footer className="footer">Hello</footer>
+      <footer className="footer">
+        PrimeInsights
+          <Link>
+            Impressium
+          </Link>
+          <Link>
+            HTW
+          </Link>
+          <Link>
+            Datenschutz
+          </Link>
+          
+      </footer>
 
     </>
   )
 }
-
-
 
 
 function App() {
