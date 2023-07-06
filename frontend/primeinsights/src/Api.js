@@ -58,4 +58,17 @@ function createPost(token, post){
     );
 }
 
-export { getPosts, login, getPost, deletePost, createPost };
+
+function updatePost(token, post, id){
+    return axios.patch(API_BASE_URL + API_POSTS + id + "/",
+        post,
+        {
+            headers: {
+                Authorization: 'Token ' + token,
+            }
+        },
+
+    );
+}
+
+export { getPosts, login, getPost, deletePost, createPost, updatePost };
