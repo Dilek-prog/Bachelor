@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
+import {Formik} from 'formik';
+import * as Yup from 'yup';
 import Table from 'react-bootstrap/Table';
 import Modal from 'react-bootstrap/Modal';
 import Nav from 'react-bootstrap/Nav';
@@ -18,17 +20,16 @@ import 'dayjs/locale/de';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faClock } from '@fortawesome/free-solid-svg-icons';
+import { Route, Routes, useNavigate, useParams } from 'react-router';
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Route, Routes, useNavigate, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
-import { getPosts, login, getPost, deletePost } from './Api';
+import { getPosts, login, getPost, deletePost, createPost } from './Api';
 
 dayjs.extend(relativeTime);
 dayjs.locale('de');
-
 
 function LoginWindow({ onReceivedToken }) {
   let userRef = useRef(); // speichern des veränderlichen Werts ohne bei aktualisiserung ein erneutes Rendern zu verursachen
@@ -54,30 +55,25 @@ function LoginWindow({ onReceivedToken }) {
     loginMutation.mutate();
   }
 
-  return ( //Template Bootstrap 
-    <Container fluid>
-      <Card style={{ width: '18rem' }}>
-        <Card.Body>
-          <Card.Title>Login</Card.Title>
-          <Card.Text>
-            Bitte Login Daten eingeben
-          </Card.Text>
-          <Form.Label htmlFor="inputUsername">Benutzername</Form.Label>
-          <Form.Control
-            type="text"
-            id="inputUsername"
-            ref={userRef}
-          />
-          <Form.Label htmlFor="inputPassword">Passwort</Form.Label>
-          <Form.Control
-            type="password"
-            id="inputPassword"
-            ref={passwordRef}
-          />
-          <Button onClick={handleClick} variant="primary">Login</Button>
-        </Card.Body>
-      </Card>
-    </Container>
+  return ( 
+    //Template Bootstrap
+    <div className="bg">
+      <img className="logo" src={process.env.PUBLIC_URL + "/img/logo.png"} alt="Logo" height={75} />
+        <div className="bg-svg-container">
+          <img src={process.env.PUBLIC_URL + "/svg/bg-login.svg"} alt="Logo" className="bg-svg" />
+        </div>
+          <h1 className="title">Willkommen bei <br />PrimeInsights</h1>
+            <Container className="floating-login">
+              <Card.Title className="login-title">Anmelden</Card.Title>
+                <div className="d-grid gap-2">
+                  <Form.Control type="text" id="inputUsername" placeholder="Nutzername" ref={userRef} />
+                  <Form.Control type="password" id="inputPassword" placeholder="Passwort" ref={passwordRef} />
+                  <Button onClick={handleClick} variant="primary">
+                    Login
+                  </Button>
+                </div>
+            </Container>
+    </div>
   );
 
 }
@@ -136,6 +132,7 @@ function PostDetails({ token }) {
         <div className="post-detail-button-group">
           <DeleteButton token={token} id={id} onSuccess={handleSuccess}/>
         </div>
+        
         <Link to="/posts">
         <Button variant="secondary" onClick={handleClickCancelDelete} className="abbrechen-bt">
           Abbrechen
@@ -198,6 +195,88 @@ function DeleteButton({token, id, onSuccess}) {
   )
 }
 
+function CreatePost({ token }) {
+  const navigate = useNavigate();
+
+  let createMutation = useMutation({
+    mutationFn: (post) => {
+      console.log(post);
+      return createPost(token, post);
+    },
+    enabled: false,
+    onSuccess: (result) => {
+      navigate('/posts');
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  function handleCancel(){
+    console.log("Abbrechen");
+    navigate("/posts");
+  }
+
+
+  return (
+    <Container>
+      <Formik 
+        validationSchema={Yup.object({ 
+          title: Yup.string()
+                      .required("Titel erforderlich"),
+          channel: Yup.string()
+                      .required("Channel erforderlich")
+                      .matches(/#.*/, "Channename muss mit # beginnen."),
+          pub_date: Yup.date()
+                      .typeError("kein gültiges Datum")
+                      .required("Publikationsdatum erforderlich")
+                      .min(new dayjs(), 'Publikationsdatum liegt in der Vergangenheit.')
+                      .max((new dayjs()).add(2,'year'), 'Publikationsdatum liegt zu weit in der Zukunft'), 
+          text: Yup.string()
+                      .required("Text erforderlich")
+        })}
+
+        onSubmit={(values, {setSubmitting}) => {
+          console.log(values);
+          createMutation.mutate(values);
+        }}
+
+        initialValues={{title:'', channel:'', pub_date:'',text:'' }}
+      >
+        {({handleSubmit, handleChange, handleBlur, values, errors}) => (
+              <Form noValidate onSubmit={handleSubmit}>
+                <Form.Group className="mb-3" >
+                  <Form.Label>Titel</Form.Label>
+                  <Form.Control type="text" name="title" placeholder="Titel" value={values.title} onChange={handleChange} onBlur={handleBlur} />
+                  <div className="text-danger ">{errors.title}</div>
+                  <p></p>
+                  <Form.Label>Channel</Form.Label>
+                  <Form.Control type="text" name="channel" placeholder="Channel" value={values.channel}  onChange={handleChange} onBlur={handleBlur} />
+                  <div className="text-danger">{errors.channel}</div>
+                  <p></p>
+                  <Form.Label>Publikationsdatum</Form.Label>
+                  <Form.Control type="datetime-local" name="pub_date" placeholder="Publikationsdatum" value={values.pub_date} onChange={handleChange} onBlur={handleBlur} />
+                  <div className="text-danger">{errors.pub_date}</div>
+                  <p></p>
+                  <Form.Group className="mb-3"  >
+                  <Form.Label>Text</Form.Label>
+                  <Form.Control as="textarea" rows={3} name="text" value={values.text} onChange={handleChange} onBlur={handleBlur} />
+
+                  <div className="text-danger">{errors.text}</div>
+                  </Form.Group>
+                </Form.Group>
+                <Button className="m-2" type="submit">
+                  Speichern 
+                </Button>
+                <Button className="m-2" onClick={handleCancel} variant="danger">
+                  Abbrechen 
+                </Button>
+              </Form>
+        )}
+      </Formik>
+    </Container>
+  );
+}
 
 function PostList({ token }) {
 
@@ -230,7 +309,8 @@ function PostList({ token }) {
     }
   }
   )
-
+  console.log(data.data);
+  
   return (
     <Container className="table">
       <Table striped bordered hover className="shaow-lg text-center">
@@ -251,7 +331,7 @@ function PostList({ token }) {
             return (
               <tr>
                 <td>
-                  <Link style={{color: 'black',textDecoration: 'none'}} to={`/posts/${post.id}`}>
+                  <Link style={{color: 'black',textDecoration: 'none', 'textDecortion:hover': 'underline'}} to={`/posts/${post.id}`}>
                     {post.title}
                   </Link>
                 </td>
@@ -375,9 +455,14 @@ function Homepage({ token }) {
                   Home
                 </Link>
               </Nav.Link>
-              <Nav.Link href="#Ansicht">
+              <Nav.Link href="#ansicht">
                 <Link style={{color: 'black', textDecoration: 'none'}} to="/posts">
                   Posts
+                </Link>
+              </Nav.Link>
+              <Nav.Link href="#create">
+                <Link style={{color: 'black', textDecoration: 'none'}} to="/create">
+                  Post erstellen
                 </Link>
               </Nav.Link>
             </Nav>
@@ -395,6 +480,7 @@ function Homepage({ token }) {
           <Route path='/posts/:id' element={<PostDetails token={token} />} />
           <Route path='/posts' element={<PostList token={token} />} />
           <Route path='*' element={<Welcome token={token} />} />
+          <Route path='/create' element={<CreatePost token={token}/>} />
         </Routes>
         <div className="push"></div>
       </div>
