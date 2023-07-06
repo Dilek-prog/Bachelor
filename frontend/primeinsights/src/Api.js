@@ -46,4 +46,16 @@ function deletePost(token, id) {
     );
 }
 
-export { getPosts, login, getPost, deletePost };
+function createPost(token, post){
+    return axios.post(API_BASE_URL + API_POSTS, 
+        post,
+        {
+            headers: {
+                Authorization: 'Token ' + token,
+            }
+        },
+
+    );
+}
+
+export { getPosts, login, getPost, deletePost, createPost };
