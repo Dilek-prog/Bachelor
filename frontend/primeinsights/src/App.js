@@ -26,7 +26,7 @@ import { Route, Routes, useNavigate, useParams } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 
-import { getPosts, login, getPost, deletePost, createPost } from './Api';
+import { getPosts, login, getPost, deletePost, createPost, updatePost } from './Api';
 
 dayjs.extend(relativeTime);
 dayjs.locale('de');
@@ -138,6 +138,9 @@ function PostDetails({ token }) {
           Abbrechen
         </Button>
       </Link>
+      <Link to="./edit">
+        <Button variant="primary">Bearbeiten</Button>
+      </Link>
       </Container>
     </>
   )
@@ -195,28 +198,13 @@ function DeleteButton({token, id, onSuccess}) {
   )
 }
 
-function CreatePost({ token }) {
+function EditPostForm({onSubmit, initialValues}) {
   const navigate = useNavigate();
-
-  let createMutation = useMutation({
-    mutationFn: (post) => {
-      console.log(post);
-      return createPost(token, post);
-    },
-    enabled: false,
-    onSuccess: (result) => {
-      navigate('/posts');
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
 
   function handleCancel(){
     console.log("Abbrechen");
     navigate("/posts");
   }
-
 
   return (
     <Container>
@@ -235,13 +223,13 @@ function CreatePost({ token }) {
           text: Yup.string()
                       .required("Text erforderlich")
         })}
-
+  
         onSubmit={(values, {setSubmitting}) => {
           console.log(values);
-          createMutation.mutate(values);
+          onSubmit(values);
         }}
-
-        initialValues={{title:'', channel:'', pub_date:'',text:'' }}
+  
+        initialValues={initialValues}
       >
         {({handleSubmit, handleChange, handleBlur, values, errors}) => (
               <Form noValidate onSubmit={handleSubmit}>
@@ -261,7 +249,7 @@ function CreatePost({ token }) {
                   <Form.Group className="mb-3"  >
                   <Form.Label>Text</Form.Label>
                   <Form.Control as="textarea" rows={3} name="text" value={values.text} onChange={handleChange} onBlur={handleBlur} />
-
+  
                   <div className="text-danger">{errors.text}</div>
                   </Form.Group>
                 </Form.Group>
@@ -276,6 +264,78 @@ function CreatePost({ token }) {
       </Formik>
     </Container>
   );
+
+}
+
+function UpdatePost({token}) {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  let updateMutation = useMutation({
+    mutationFn: (post) => {
+      console.log(post);
+      return updatePost(token, post, id);
+    },
+    enabled: false,
+    onSuccess: (result) => {
+      navigate('/posts');
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+
+  let { isLoading, isError, data, error } = useQuery({
+    queryFn: () => { return getPost(token, id) },
+    queryKey: ['post', id],
+  });
+
+  if (isLoading) {
+    return (
+      <div>Post wird geladen :D</div>
+    );
+  };
+
+  if (isError) {
+    return (
+      <div>Post konnte nicht geladen werden. :(</div>
+    );
+  };
+ 
+  const post = {
+    ...data.data,
+    pub_date: (new dayjs(data.data.pub_date)).format("YYYY-MM-DDThh:mm")
+  };
+
+  return (
+    <>
+     <EditPostForm onSubmit={ updateMutation.mutate } initialValues={post}/>
+    </>
+  );
+}
+
+function CreatePost({ token }) {
+  const navigate = useNavigate();
+
+  let createMutation = useMutation({
+    mutationFn: (post) => {
+      console.log(post);
+      return createPost(token, post);
+    },
+    enabled: false,
+    onSuccess: (result) => {
+      navigate('/posts');
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  return (
+    <EditPostForm onSubmit={ createMutation.mutate } initialValues={{ title: '', channel: '', pub_date: '', text: ''}}/>
+  )
+
 }
 
 function PostList({ token }) {
@@ -329,7 +389,7 @@ function PostList({ token }) {
           {posts.map((post) => {
             console.log(post.pub_date);
             return (
-              <tr>
+              <tr key={post.id}>
                 <td>
                   <Link style={{color: 'black',textDecoration: 'none', 'textDecortion:hover': 'underline'}} to={`/posts/${post.id}`}>
                     {post.title}
@@ -450,27 +510,27 @@ function Homepage({ token }) {
           <NavbarToggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="nav">
-              <Nav.Link href="#home">
-                <Link style={{color: 'black',textDecoration: 'none'}} to="/">
+              <Link style={{color: 'black',textDecoration: 'none'}} to="/">
+
                   Home
-                </Link>
-              </Nav.Link>
-              <Nav.Link href="#ansicht">
-                <Link style={{color: 'black', textDecoration: 'none'}} to="/posts">
+
+              </Link>
+              <Link style={{color: 'black', textDecoration: 'none'}} to="/posts">
+
                   Posts
-                </Link>
-              </Nav.Link>
-              <Nav.Link href="#create">
-                <Link style={{color: 'black', textDecoration: 'none'}} to="/create">
+
+              </Link>
+              <Link  style={{color: 'black', textDecoration: 'none'}} to="/create">
+
                   Post erstellen
-                </Link>
-              </Nav.Link>
-            </Nav>
-            <Nav.Link href="#logout" className="logout">
-                <Link style={{color: 'black', textDecoration: 'none'}} to="/logout">
+
+              </Link>
+            <Link  className="logout" style={{color: 'black', textDecoration: 'none'}} to="/logout">
+
                   logout
-                </Link>
-              </Nav.Link>
+
+              </Link>
+            </Nav>
           </Navbar.Collapse>
         </Navbar>
       </div>
@@ -481,6 +541,7 @@ function Homepage({ token }) {
           <Route path='/posts' element={<PostList token={token} />} />
           <Route path='*' element={<Welcome token={token} />} />
           <Route path='/create' element={<CreatePost token={token}/>} />
+          <Route path='/posts/:id/edit' element={<UpdatePost token={token} />} />
         </Routes>
         <div className="push"></div>
       </div>
