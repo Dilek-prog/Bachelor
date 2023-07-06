@@ -1,3 +1,4 @@
+from knox.auth import TokenAuthentication 
 from rest_framework import viewsets
 from rest_framework import permissions
 
@@ -8,6 +9,7 @@ from .permission import IsOwner
 class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwner]
+    authentication_classes = [TokenAuthentication]
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
