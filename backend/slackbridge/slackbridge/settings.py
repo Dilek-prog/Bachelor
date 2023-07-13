@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,6 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-@5li9an*$=#-c8aweg+u&wlxq)9rmn5++=nu&+b!qfl!+#7d2_"
+SLACK_API_TOKEN = os.environ.get("SLACK_API_TOKEN", "")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'rest_framework',
     'knox',
+    'django_cron',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +141,7 @@ REST_KNOX = {  #Einstellung für Rest Knox
     'TOKEN_TTL': timedelta(days=2),  # lebensdauer der Token
     'AUTO_REFRESH': True, # Automatische Dauer der Token
 }
+
+CRON_CLASSES = [
+    "autopost.cron.PublishPosts",
+]
