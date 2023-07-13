@@ -49,9 +49,10 @@
     .title-mobile {
       font-size: 30px;
       display: block;
+      text-align: center;
       position: absolute;
       top: min(40vw, 30vh);
-      left: min(53vw, 35vh);
+      left: min(50vw, 35vh);
       transform: translate(-50%, -50%);
       color: #ffffff;
       -webkit-transform: translate(-50%, -50%);
