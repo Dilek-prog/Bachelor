@@ -15,10 +15,14 @@ class PostSerializer(serializers.ModelSerializer):
             'posted',
             'text',  
             'created',
+            'error',
+            'elipsis',
         ]
 
         read_only_fields = [  #Keine Überschreibung der Werte
             'id',
             'posted',
             'created',
+            'error',
+            'elipsis',
         ]
