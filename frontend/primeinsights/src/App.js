@@ -2,6 +2,7 @@ import './App.css';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
+
 import Form from 'react-bootstrap/Form';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
@@ -27,56 +28,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 
 import { getPosts, login, getPost, deletePost, createPost, updatePost } from './Api';
+import LoginPage from './pages/Login';
+import WelcomePage from './pages/Login/Welcome';
+
 
 dayjs.extend(relativeTime);
 dayjs.locale('de');
-
-function LoginWindow({ onReceivedToken }) {
-  let userRef = useRef(); // speichern des veränderlichen Werts ohne bei aktualisiserung ein erneutes Rendern zu verursachen
-  let passwordRef = useRef();
-
-
-  let loginMutation = useMutation({
-    mutationFn: () => {
-      const username = userRef.current.value;
-      const password = passwordRef.current.value;
-      return login(username, password);
-    },
-    enabled: false,
-    onSuccess: (result) => {
-      onReceivedToken(result.data.token);
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
-
-  function handleClick() { //sobald Login geklickt wird, wird das Ereignis handleClick getätigt aber nur, wenn die Daten vom Login stimmen 
-    loginMutation.mutate();
-  }
-
-  return ( 
-    //Template Bootstrap
-    <div className="bg">
-      <img className="logo" src={process.env.PUBLIC_URL + "/img/logo.png"} alt="Logo" height={75} />
-        <div className="bg-svg-container">
-          <img src={process.env.PUBLIC_URL + "/svg/bg-login.svg"} alt="Logo" className="bg-svg" />
-        </div>
-          <h1 className="title">Willkommen bei <br />PrimeInsights</h1>
-            <Container className="floating-login">
-              <Card.Title className="login-title">Anmelden</Card.Title>
-                <div className="d-grid gap-2">
-                  <Form.Control type="text" id="inputUsername" placeholder="Nutzername" ref={userRef} />
-                  <Form.Control type="password" id="inputPassword" placeholder="Passwort" ref={passwordRef} />
-                  <Button onClick={handleClick} variant="primary">
-                    Login
-                  </Button>
-                </div>
-            </Container>
-    </div>
-  );
-
-}
 
 function PostDetails({ token }) {
 
@@ -134,13 +91,13 @@ function PostDetails({ token }) {
         </div>
         
         <Link to="/posts">
-        <Button variant="secondary" onClick={handleClickCancelDelete} className="abbrechen-bt">
-          Abbrechen
-        </Button>
-      </Link>
-      <Link to="./edit">
-        <Button variant="primary">Bearbeiten</Button>
-      </Link>
+          <Button variant="secondary" onClick={handleClickCancelDelete}className="abbrechen-bt">
+            Abbrechen
+          </Button>
+        </Link>
+        <Link to="./edit">
+          <Button variant="primary">Bearbeiten</Button>
+        </Link>
       </Container>
     </>
   )
@@ -208,6 +165,13 @@ function EditPostForm({onSubmit, initialValues}) {
 
   return (
     <Container>
+      <div>
+        <div className="title-post">
+          <h1>Neue Nachricht erstellen</h1>
+          <p>Achten auf Beschränkungen</p>
+        </div>
+      </div>
+
       <Formik 
         validationSchema={Yup.object({ 
           title: Yup.string()
@@ -232,33 +196,32 @@ function EditPostForm({onSubmit, initialValues}) {
         initialValues={initialValues}
       >
         {({handleSubmit, handleChange, handleBlur, values, errors}) => (
-              <Form noValidate onSubmit={handleSubmit}>
+              <Form noValidate onSubmit={handleSubmit} >
                 <Form.Group className="mb-3" >
                   <Form.Label>Titel</Form.Label>
-                  <Form.Control type="text" name="title" placeholder="Titel" value={values.title} onChange={handleChange} onBlur={handleBlur} />
-                  <div className="text-danger ">{errors.title}</div>
-                  <p></p>
+                    <Form.Control type="text" name="title" placeholder="Titel" value={values.title} onChange={handleChange} onBlur={handleBlur} />
+                      <div className="text-danger">{errors.title}</div>
+                        <p></p>
                   <Form.Label>Channel</Form.Label>
-                  <Form.Control type="text" name="channel" placeholder="Channel" value={values.channel}  onChange={handleChange} onBlur={handleBlur} />
-                  <div className="text-danger">{errors.channel}</div>
-                  <p></p>
+                    <Form.Control type="text" name="channel" placeholder="Channel" value={values.channel}  onChange={handleChange} onBlur={handleBlur} />
+                      <div className="text-danger">{errors.channel}</div>
+                        <p></p>
                   <Form.Label>Publikationsdatum</Form.Label>
-                  <Form.Control type="datetime-local" name="pub_date" placeholder="Publikationsdatum" value={values.pub_date} onChange={handleChange} onBlur={handleBlur} />
-                  <div className="text-danger">{errors.pub_date}</div>
-                  <p></p>
+                    <Form.Control type="datetime-local" name="pub_date" placeholder="Publikationsdatum" value={values.pub_date} onChange={handleChange} onBlur={handleBlur} />
+                      <div className="text-danger">{errors.pub_date}</div>
+                        <p></p>
                   <Form.Group className="mb-3"  >
-                  <Form.Label>Text</Form.Label>
-                  <Form.Control as="textarea" rows={3} name="text" value={values.text} onChange={handleChange} onBlur={handleBlur} />
-  
-                  <div className="text-danger">{errors.text}</div>
+                    <Form.Label>Text</Form.Label>
+                      <Form.Control as="textarea" rows={3} name="text" value={values.text} onChange={handleChange} onBlur={handleBlur} />
+                        <div className="text-danger">{errors.text}</div>
                   </Form.Group>
                 </Form.Group>
-                <Button className="m-2" type="submit">
-                  Speichern 
-                </Button>
-                <Button className="m-2" onClick={handleCancel} variant="danger">
-                  Abbrechen 
-                </Button>
+                  <Button className="m-2" type="submit" to="/posts">
+                    Speichern 
+                  </Button>
+                  <Button className="m-2" onClick={handleCancel} variant="danger">
+                    Abbrechen 
+                  </Button>
               </Form>
         )}
       </Formik>
@@ -340,6 +303,8 @@ function CreatePost({ token }) {
 
 function PostList({ token }) {
 
+  const [filter, setFilter] = useState('');
+
   let { isLoading, isError, data, refetch } = useQuery({
     queryFn: () => { return getPosts(token) },
     queryKey: ['posts'],
@@ -372,166 +337,98 @@ function PostList({ token }) {
   console.log(data.data);
   
   return (
-    <Container className="table">
-      <Table striped bordered hover className="shaow-lg text-center">
-        <thead>
-          <tr>
-            <th>Titel</th>
-            <th>Publikationsdatum</th>
-            <th>Erstellungsdatum</th>
-            <th>Channel</th>
-            <th>veröffentlicht</th>
-            <th>Text</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {posts.map((post) => {
-            console.log(post.pub_date);
-            return (
-              <tr key={post.id}>
-                <td>
-                  <Link style={{color: 'black',textDecoration: 'none', 'textDecortion:hover': 'underline'}} to={`/posts/${post.id}`}>
-                    {post.title}
-                  </Link>
-                </td>
-                <td>{post.pub_date.fromNow()}</td>
-                <td>{post.created.format('DD.MM.YYYY')}</td>
-                <td>{post.channel}</td>
-                <td className="posted-icon" >{post.posted ? <FontAwesomeIcon icon={faCircleCheck} /> : <FontAwesomeIcon icon={faClock} />}</td>
-                <td>{post.text}</td>
-                <td><DeleteButton token={token} id={post.id} onSuccess={handleSuccess}/></td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </Table>
-    </Container>
+    <>
+    <Container className="main">
+      <div className="title-post">
+        <h1>Hier siehst du deine erstellten Posts</h1>
+          <div>
+            Für Detail Übersicht auf den jeweiligen Titel klicken.
+          </div>
+      </div>
+    
 
+      <Container className="table-container">
+        <Table striped bordered hover className="shaow-lg text-center">
+          <thead>
+            <tr>
+              <th>Titel</th>
+              <th>Publikationsdatum</th>
+              <th>Erstellungsdatum</th>
+              <th>Channel</th>
+              <th>veröffentlicht</th>
+              <th>Text</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {posts.map((post) => {
+              console.log(post.pub_date);
+              return (
+                <tr key={post.id}>
+                  <td className={post.error===''?'':'table-row-failed'}>
+                    <Link style={{color: 'black', 'textDecortion:hover': 'underline'}} to={`/posts/${post.id}`}>
+                      {post.title}
+                    </Link>
+                    {post.error!=='' && <p>{post.error}</p>}
+                  </td>
+                  <td>{post.pub_date.fromNow()}</td>
+                  <td>{post.created.format('DD.MM.YYYY')}</td>
+                  <td>{post.channel}</td>
+                  <td className="posted-icon" >{post.posted ? <FontAwesomeIcon icon={faCircleCheck}/> : <FontAwesomeIcon icon={faClock} />}</td>
+                  <td>{post.elipsis}</td>
+                  <td><DeleteButton token={token} id={post.id} onSuccess={handleSuccess}/></td>
+                  <td><Link to="./edit"><Button variant="primary">Bearbeiten</Button></Link></td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </Table>
+      </Container>
+    </Container>
+  </>
   );
 }
 
-function Welcome({ token }) {
-  return (
-    <>
-    <h1 className="h1">Willkommen in PrimeInsights</h1>
-    <Container fluid className="Container1">
-    <div className="grid-container">
-      <div>
-          <div>
-            <div>
-            <br/>
-            <br/>
-              <h1 className="">PrimeInsights</h1>
-              <p></p>
-              <div className="grid-item">
-                <h3 className="">Um Verwaltung und internen sowie externen Professor:innen, 
-                Dozent:innen und wissenschaftliche Mitarbeiter:innen eine Möglichkeit zu bieten, 
-                ohne die Slack-App auf ihren Endgeräten Nachrichten zu posten, 
-                wurde die PrimeInsights-Webanwendung programmiert.</h3>
-              </div>
-            </div>
-          </div>
-      </div>
-    </div>
-    </Container>
-    <br/>
-    <Container fluid>
-      <div className="section-title">
-        <h2 className="projekt">Projekt</h2>
-        <p className="Vision">Vision</p>
-      </div>
-      <div className="col-lg-12">
-        <p>Um Verwaltung und internen sowie externen Professor:innen, 
-          Dozent:innen und wissenschaftliche Mitarbeiter:innen eine Möglichkeit zu bieten, 
-          ohne die Slack-App auf ihren Endgeräten Nachrichten zu posten, 
-          wird die PrimeInsights-Webanwendung programmiert.
-        </p>
-        <p>Die Handhabung unserer Anwendung ist unkompliziert und für den Laien gut verständlich. Zudem
-            sind nur notwendige Anwendungen und Funktionen vorhanden, um eine einfache Bedienung zu
-            gewährleisten. Anders als Produkte der Wettbewerber ist unsere Anwendung auf das wenstlichste
-            fokussiert und als OpenSource-APM kostenfrei.   
-        </p>
-      </div>
-    </Container>
-    <Container fluid>
-    <h1 className="technologien">VERWENDETE TECHNOLOGIEN</h1>
-    <br/>
-      <Row xs={1} md={2} lg={3} className="cards">
-        <Col>
-          <Card className="card1">
-          <Card.Header as="h5">React</Card.Header>
-          <Card.Body>
-          <div className="bild">
-            <img scr="Bild.JPG" fluid width="64" height="64"/>
-          </div>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
-           </Card.Body>
-          </Card>
-        </Col>
-        <Col>
-          <Card className="card2">
-          <Card.Header as="h5">Django</Card.Header>
-          <Card.Body>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
-           </Card.Body>
-          </Card>
-        </Col>
-        <Col>
-          <Card className="card3">
-          <Card.Header as="h5">React Bootstrap</Card.Header>
-          <Card.Body>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
-           </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
-    </>
-  )
-}
-
-
 function Homepage({ token }) {
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    window.location.reload();  
+  };
+
   return (
     <>
       <div>
-        <Navbar sticky="top" bg="light" expand="lg" className="navbar">
-           <Image src="favicon.ico" className="img" alt="" rounded />
-          <NavbarToggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="nav">
-              <Link style={{color: 'black',textDecoration: 'none'}} to="/">
-
-                  Home
-
-              </Link>
-              <Link style={{color: 'black', textDecoration: 'none'}} to="/posts">
-
-                  Posts
-
-              </Link>
-              <Link  style={{color: 'black', textDecoration: 'none'}} to="/create">
-
-                  Post erstellen
-
-              </Link>
-            <Link  className="logout" style={{color: 'black', textDecoration: 'none'}} to="/logout">
-
-                  logout
-
-              </Link>
-            </Nav>
-          </Navbar.Collapse>
+        <Navbar
+          sticky="top"
+          collapseOnSelect
+          expand="lg"
+          bg="light"
+          >
+          <Container>
+            <Navbar.Brand as={Link} to="/" style={{ color: "#87BD20;", fontWeight: 550 }} href="#home">
+              PrimeInsights
+            </Navbar.Brand>
+              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                  <Nav className="me-auto">
+                    <Nav.Link as={Link} to="/" style={{color: 'black',textDecoration: 'none'}} href="#home">Home</Nav.Link>
+                    <Nav.Link as={Link} to="/posts" style={{color: 'black',textDecoration: 'none'}} href="#Ansicht">Posts</Nav.Link>
+                    <Nav.Link as={Link} to="/create" style={{color: 'black',textDecoration: 'none'}} href="#create">Post erstellen</Nav.Link>
+                  </Nav>
+                  <Nav>
+                    <Button
+                      variant="danger"
+                      className="btn btn-danger"
+                      type="submit"
+                      onClick={handleLogout}
+                      >
+                      Abmelden
+                    </Button>
+                  </Nav>
+                </Navbar.Collapse>
+          </Container>
         </Navbar>
       </div>
 
@@ -539,26 +436,61 @@ function Homepage({ token }) {
         <Routes>
           <Route path='/posts/:id' element={<PostDetails token={token} />} />
           <Route path='/posts' element={<PostList token={token} />} />
-          <Route path='*' element={<Welcome token={token} />} />
+          <Route path='*' element={<WelcomePage token={token} />} />
           <Route path='/create' element={<CreatePost token={token}/>} />
           <Route path='/posts/:id/edit' element={<UpdatePost token={token} />} />
         </Routes>
         <div className="push"></div>
       </div>
-      <footer className="footer">
-        PrimeInsights
-          <Link>
-            Impressium
-          </Link>
-          <Link>
-            HTW
-          </Link>
-          <Link>
-            Datenschutz
-          </Link>
-          
-      </footer>
 
+      <p></p>      
+      <footer className="page-footer font-small blue pt-4 bg-light">
+        <div className="container-fluid text-center text-md-left">
+          <div className="row">
+            <div className="col-md-6 mt-md-0 mt-3">
+              <h5 className="text-uppercase text-primary">PrimeInsights</h5>
+              <p>
+                Here you can use rows and columns to organize your footer content.
+              </p>
+            </div>
+
+            <div className="col-md-3 mb-md-0 mb-3">
+              <h6 className="text-uppercase">Links</h6>
+              <ul className="list-unstyled">
+                <li>
+                  <a href="#!">Link 1</a>
+                </li>
+                <li>
+                  <a href="#!">Link 2</a>
+                </li>
+                <li>
+                  <a href="#!">Link 3</a>
+                </li>
+                <li>
+                  <a href="#!">Link 4</a>
+                </li>
+              </ul>
+            </div>
+
+          <div className="col-md-3 mb-md-0 mb-3">
+            <h6 className="text-uppercase">Kontaktinformationen</h6>
+
+                Dilek Ogur
+                <br/>
+                Köpenicker str. 101
+                <br/>
+                10179 Berlin
+
+
+          </div>
+        </div>
+      </div>
+
+      <div className="footer-copyright text-center py-3">
+        © 2023 Copyright:{' '}
+        <a href="https://example.com/">PrimeInsights</a>
+      </div>
+    </footer>
     </>
   )
 }
@@ -574,7 +506,7 @@ function App() {
 
   if (token === '') {
     return (
-      <LoginWindow onReceivedToken={handleReceivedToken} />
+      <LoginPage onReceivedToken={handleReceivedToken} />
     );
   } else {
     return (
