@@ -370,15 +370,21 @@ function PostList({ token }) {
                     <Link style={{color: 'black', 'textDecortion:hover': 'underline'}} to={`/posts/${post.id}`}>
                       {post.title}
                     </Link>
-                    {post.error!=='' && <p>{post.error}</p>}
+                    {post.error!=='' && <p className="post-error-message"> Fehler beim Posten <p> <small>{post.error}</small> </p></p>}
                   </td>
-                  <td>{post.pub_date.fromNow()}</td>
-                  <td>{post.created.format('DD.MM.YYYY')}</td>
-                  <td>{post.channel}</td>
-                  <td className="posted-icon" >{post.posted ? <FontAwesomeIcon icon={faCircleCheck}/> : <FontAwesomeIcon icon={faClock} />}</td>
-                  <td>{post.elipsis}</td>
-                  <td><DeleteButton token={token} id={post.id} onSuccess={handleSuccess}/></td>
-                  <td><Link to="./edit"><Button variant="primary">Bearbeiten</Button></Link></td>
+                  <td className={post.error===''?'':'table-row-failed'}> 
+                    {post.pub_date.fromNow()}
+                  </td>
+                  <td className={post.error===''?'':'table-row-failed'}>
+                    {post.created.format('DD.MM.YYYY')}
+                  </td>
+                  <td className={post.error===''?'':'table-row-failed'}>
+                    {post.channel}
+                  </td>
+                  <td className={"posted-icon" + (post.error===''?'':' table-row-failed')} >{post.posted ? <FontAwesomeIcon icon={faCircleCheck}/> : <FontAwesomeIcon icon={faClock} />}</td>
+                  <td className={post.error===''?'':'table-row-failed'} >{post.elipsis}</td>
+                  <td className={post.error===''?'':'table-row-failed'}><DeleteButton token={token} id={post.id} onSuccess={handleSuccess}/></td>
+                  <td className={post.error===''?'':'table-row-failed'}><Link to="./edit"><Button variant="primary">Bearbeiten</Button></Link></td>
                 </tr>
               )
             })}
@@ -419,8 +425,8 @@ function Homepage({ token }) {
                   </Nav>
                   <Nav>
                     <Button
-                      variant="danger"
-                      className="btn btn-danger"
+                      variant="Secondary"
+                      className="btn btn-outline-dark"
                       type="submit"
                       onClick={handleLogout}
                       >
