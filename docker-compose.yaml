@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+    backend:
+        container_name: pibackend
+        build: ./backend
+        volumes: 
+            - ./backend/slackbridge/db.sqlite3:/app/db.sqlite3
+        ports: 
+            - "8000:8000"
