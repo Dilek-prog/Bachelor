@@ -1,1 +1,1 @@
-* * * * * python3 /app/manage.py runcrons
+*/5 * * * * python3 /app/manage.py runcrons > /proc/1/fd/1 2>&1
