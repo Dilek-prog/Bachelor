@@ -38,9 +38,6 @@ html, body {
 }
 
 
-
-
-
 /* Posts CSS*/
 
 .table{
@@ -63,7 +60,11 @@ html, body {
 }
 
 .posted-icon .fa-clock {
-    color: rgba(194, 50, 50, 0.973);
+    color: rgb(105, 105, 230);
+}
+
+.posted-icon .fa-circle-check {
+    color: green !important;
 }
 
 .post-detail-container {
@@ -79,7 +80,11 @@ html, body {
 }
 
 .table-row-failed {
-    background-color: #f00 !important;
+    background-color:#fccccc !important;
+}
+
+.post-error-message {
+    color:red;
 }
 
 .section-title h2{
