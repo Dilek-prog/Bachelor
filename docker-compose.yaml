@@ -4,6 +4,7 @@ services:
     backend:
         container_name: pibackend
         build: ./backend
+        env_file: secrets.env
         volumes: 
             - ./backend/slackbridge/db.sqlite3:/app/db.sqlite3
         ports: 

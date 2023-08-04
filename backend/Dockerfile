@@ -11,9 +11,9 @@ COPY slackbridge/slackbridge /app/slackbridge
 COPY slackbridge/manage.py /app/manage.py
 
 COPY post-cron /etc/cron.d/post-cron
-RUN chmod 0644 /etc/cron.d/post-cron
+RUN chmod 0644 /etc/cron.d/post-cron 
 RUN crontab /etc/cron.d/post-cron 
 
 EXPOSE 8000
 
-CMD cron && python3 /app/manage.py runserver 0.0.0.0:8000 
+CMD printenv > /etc/environment && cron && python3 /app/manage.py runserver 0.0.0.0:8000 
