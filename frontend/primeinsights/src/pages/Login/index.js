@@ -33,26 +33,26 @@ export default function LoginPage({ onReceivedToken }) {
 
   return (
     <div className="bg">
-      { <img
+      { <a href="https://www.htw-berlin.de/" target="_blank"><img
         className="logo"
         src={process.env.PUBLIC_URL + "/img/logo.jpg"}
         alt="Logo"
         height={75}
-      /> }
+      /></a>}
 
-      { <img
+      { <a href="https://www.htw-berlin.de/" target="_blank"><img
         className="logo-mobile"
         src={process.env.PUBLIC_URL + "/img/logo-mobile.png"}
         alt="Logo"
         height={75}
-      /> }
+      /></a>}
 
       <div className="bg-svg-container">
-        <img
+        {<img
           src={process.env.PUBLIC_URL + "/svg/bg-login.svg"}
           alt="Logo"
           className="bg-svg"
-        />
+        />}
       </div>
 
       <h1 className="title">
