@@ -29,7 +29,7 @@ import { Link } from 'react-router-dom';
 
 import { getPosts, login, getPost, deletePost, createPost, updatePost } from './Api';
 import LoginPage from './pages/Login';
-import WelcomePage from './pages/Login/Welcome';
+import WelcomePage from './pages/Welcome';
 
 
 dayjs.extend(relativeTime);
