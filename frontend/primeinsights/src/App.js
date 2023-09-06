@@ -14,7 +14,7 @@ import NavbarToggle from 'react-bootstrap/esm/NavbarToggle';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import 'dayjs/locale/de';
@@ -77,6 +77,7 @@ function PostDetails({ token }) {
     <>
       <Container fluid className="post-detail-container">
         <h1>{post.title}</h1>
+        
         <div>erstellt am {post.created.format('DD.MM.YYYY')}</div>
         <p>
           <small className='text-muted'>veröffentlicht {post.pub_date.fromNow()}&nbsp;</small>
@@ -86,18 +87,17 @@ function PostDetails({ token }) {
           <small>Channel {post.channel}</small>
         </p>
         <div>{post.text}</div>
-        <div className="post-detail-button-group">
-          <DeleteButton token={token} id={id} onSuccess={handleSuccess}/>
-        </div>
-        
-        <Link to="/posts">
-          <Button variant="secondary" onClick={handleClickCancelDelete}className="abbrechen-bt">
+        <div className="post-detail-button-group"> 
+        <Link to="./edit" className="edit-btn-detail">
+          <Button variant="primary">Bearbeiten</Button>
+        </Link>
+        <Link to="/posts" className="buttton-abbrechen">
+          <Button variant="secondary" onClick={handleClickCancelDelete} className="abbrechen-bt">
             Abbrechen
           </Button>
         </Link>
-        <Link to="./edit">
-          <Button variant="primary">Bearbeiten</Button>
-        </Link>
+        <DeleteButton token={token} id={id} onSuccess={handleSuccess} className="delete-btn-detail"/>
+        </div>
       </Container>
     </>
   )
@@ -203,7 +203,7 @@ function EditPostForm({onSubmit, initialValues}) {
                       <div className="text-danger">{errors.title}</div>
                         <p></p>
                   <Form.Label>Channel</Form.Label>
-                    <Form.Control type="text" name="channel" placeholder="Channel" value={values.channel}  onChange={handleChange} onBlur={handleBlur} />
+                    <Form.Control type="text" name="channel" placeholder="#Channel" value={values.channel}  onChange={handleChange} onBlur={handleBlur} />
                       <div className="text-danger">{errors.channel}</div>
                         <p></p>
                   <Form.Label>Publikationsdatum</Form.Label>
@@ -309,6 +309,27 @@ function PostList({ token }) {
     queryFn: () => { return getPosts(token) },
     queryKey: ['posts'],
   });
+  
+  useEffect(() => {
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    };
+
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+    if (scrollToTopBtn) {
+      scrollToTopBtn.addEventListener('click', scrollToTop);
+    }
+
+    return () => {
+      if (scrollToTopBtn) {
+        scrollToTopBtn.removeEventListener('click', scrollToTop);
+      }
+    };
+  }, []); 
 
   function handleSuccess(result) {
     refetch();
@@ -342,10 +363,9 @@ function PostList({ token }) {
       <div className="title-post">
         <h1>Hier siehst du deine erstellten Posts</h1>
           <div>
-            Für Detail Übersicht auf den jeweiligen Titel klicken.
+            Für die Detail Übersicht auf den jeweiligen <u>Titel</u> klicken.
           </div>
       </div>
-    
 
       <Container className="table-container">
         <Table striped bordered hover className="shaow-lg text-center">
@@ -384,13 +404,16 @@ function PostList({ token }) {
                   <td className={"posted-icon" + (post.error===''?'':' table-row-failed')} >{post.posted ? <FontAwesomeIcon icon={faCircleCheck}/> : <FontAwesomeIcon icon={faClock} />}</td>
                   <td className={post.error===''?'':'table-row-failed'} >{post.elipsis}</td>
                   <td className={post.error===''?'':'table-row-failed'}><DeleteButton token={token} id={post.id} onSuccess={handleSuccess}/></td>
-                  <td className={post.error===''?'':'table-row-failed'}><Link to="./edit"><Button variant="primary">Bearbeiten</Button></Link></td>
+                  <td className={post.error===''?'':'table-row-failed'}><Link to={`/posts/${post.id}/edit`}><Button variant="primary">Bearbeiten</Button></Link></td>
                 </tr>
               )
             })}
           </tbody>
         </Table>
       </Container>
+        <div className="">
+          <button id="scrollToTopBtn">^</button>
+        </div>
     </Container>
   </>
   );
