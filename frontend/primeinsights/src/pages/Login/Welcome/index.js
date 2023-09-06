@@ -5,10 +5,10 @@ import Accordion from "react-bootstrap/Accordion";
 export default function WelcomePage({ token }) {
   return (
     <Container className="main">
-      <section>
+      <section className="">
         <h1>Willkommen in PrimeInsights</h1>
         <p>
-          Um Verwaltung und internen sowie externen Professor:innen,
+          Um Verwaltung, internen sowie externen Professor:innen,
           Dozent:innen und wissenschaftliche Mitarbeiter:innen eine Möglichkeit
           zu bieten, <span className="hglt">ohne die Slack-App</span> auf ihren
           Endgeräten Nachrichten zu posten, wurde die PrimeInsights-Webanwendung
@@ -17,17 +17,11 @@ export default function WelcomePage({ token }) {
       </section>
       <section>
         <h1>Vision</h1>
-        {/* <p>
-          Um Verwaltung und internen sowie externen Professor:innen,
-          Dozent:innen und wissenschaftliche Mitarbeiter:innen eine Möglichkeit
-          zu bieten, ohne die Slack-App auf ihren Endgeräten Nachrichten zu
-          posten, wurde die PrimeInsights-Webanwendung programmiert.
-        </p> */}
         <p>
-          Die Handhabung unserer Anwendung ist{" "}
-          <span className="hglt">unkompliziert</span> und für den Laien{" "}
+          Die Handhabung unserer Anwendung ist
+          <span className="hglt">unkompliziert</span> und für den Laien
           <span className="hglt">gut verständlich</span>. Zudem sind nur
-          notwendige Anwendungen und Funktionen vorhanden, um eine{" "}
+          notwendige Anwendungen und Funktionen vorhanden, um eine
           <span className="hglt">einfache Bedienung</span> zu gewährleisten.
           Anders als Produkte der Wettbewerber ist unsere Anwendung auf das
           wenstlichste fokussiert und als OpenSource-APM kostenfrei.
@@ -80,4 +74,4 @@ export default function WelcomePage({ token }) {
       </section>
     </Container>
   );
-}
+} 
