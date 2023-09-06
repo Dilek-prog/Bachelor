@@ -60,27 +60,55 @@ html, body {
 }
 
 .posted-icon .fa-clock {
-    color: rgb(105, 105, 230);
+    color: #ff0000;
 }
 
 .posted-icon .fa-circle-check {
-    color: green !important;
+    color: #76B900  !important;
 }
 
 .post-detail-container {
     background-color: aliceblue;
     padding: 0 1rem;
     margin: 3rem auto 6rem;
-    max-width: 40rem;
+    max-width: 55rem;
+}
+
+.edit-btn-detail {
+    padding-left: 5px;
 }
 
 .post-detail-button-group {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding: 20px 0px 30px 4px;
+}
+
+.buttton-abbrechen {
+    padding-left: 110px;
+    padding-right: 10px;
 }
 
 .table-row-failed {
     background-color:#fccccc !important;
+}
+
+.btn-top{
+    position:relative;
+    right: 0;
+    transform: translate(1400%, 3%);
+}
+
+#scrollToTopBtn {
+    background-color:#89a0e0;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 48px;
+    width: 48px;
+}
+
+#scrollToTopBtn:hover {
+    background-color: #5f7ed4;
 }
 
 .post-error-message {
@@ -124,6 +152,10 @@ html, body {
 
 .Vision {
     font-size: 36px;
+}
+.button-abbrechen {
+    margin-right: 20px;
+    margin-right: 20px;
 }
 
 
