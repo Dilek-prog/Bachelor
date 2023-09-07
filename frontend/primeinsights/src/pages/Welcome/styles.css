@@ -1,10 +1,14 @@
-.main {
+.main1 {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  background-color: rgb(255, 255, 255);
+  color: #ffffff;
+}
+
+.FullScreen{
+  background-color: #76B900;
 }
 
 section {
@@ -14,7 +18,6 @@ section {
 
 section:first-child {
   margin-top: 2rem;
-
 }
 
 section:last-child {
@@ -28,13 +31,85 @@ section h1 {
 }
 
 section:first-child h1 {
-  margin-top: 0;
-  font-size: 2.5rem;
+  margin-bottom: 15%;
+  margin-top: 25%;
+  font-size: 3.5rem;
 }
 
 section p {
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 25px;
   line-height: 1.5;
   text-align: justify;
+  margin-bottom: 50px;
+}
+
+.Welcome{
+  font-size: 40%;
+}
+
+.btn-w{
+  margin-top: 60px;
+  margin-bottom: 30%;
+
+}
+
+.btn-light {
+  margin-right: 20px;
+}
+
+.ueberschrifth1 {
+  color:#76B900;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.card {
+  flex-basis: calc(33.33% - 20px);
+  margin-bottom: 18%;
+  padding: 15px;
+  border: 3px solid #76B900;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.text-Card {
+  font-size: 18px;
+  padding-top: 10px;
+}
+
+.text-Card1{
+  font-size: 18px;
+  padding-bottom: 43px;
+  padding-top: 10px;
+}
+
+.text-Card2{
+  font-size: 18px;
+  padding-top: 10px;
+  padding-bottom: 27px;
+}
+
+.Containerright{
+  margin-right: 30%;
+}
+
+@media screen and (max-width: 768px) {
+  .card-container {
+      flex-direction: column;
+  }
+
+  .card {
+    flex-basis: 100%;
+    margin-right: 0;
+  }
 }
