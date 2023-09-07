@@ -34,7 +34,7 @@ export default function WelcomePage({ token }) {
           </section>
         </div>
       <section className="card-container">
-      <Card style={{ width: '18rem' }} className="card">
+      <Card style={{ width: '18rem' }} className="cardbody">
         <Card.Body>
           <Card.Title>Adressaten</Card.Title>
           <Card.Text className="text-Card">
@@ -52,7 +52,7 @@ export default function WelcomePage({ token }) {
           </Card.Text>
         </Card.Body>
       </Card> 
-      <Card style={{ width: '18rem' }}>
+      <Card style={{ width: '18rem' }} className="cardbody">
         <Card.Body>
           <Card.Title>Vision</Card.Title>
           <Card.Text className="text-Card1">
@@ -62,7 +62,7 @@ export default function WelcomePage({ token }) {
           </Card.Text>
         </Card.Body>
       </Card> 
-      <Card style={{ width: '18rem' }}>
+      <Card style={{ width: '18rem' }} className="cardbody">
         <Card.Body>
           <Card.Title>Technologien</Card.Title>
           <Card.Text className="text-Card2">
