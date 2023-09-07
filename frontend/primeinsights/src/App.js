@@ -164,68 +164,74 @@ function EditPostForm({onSubmit, initialValues}) {
   }
 
   return (
-    <Container>
-      <div>
-        <div className="title-post">
-          <h1>Neue Nachricht erstellen</h1>
-          <p>Achten auf Beschränkungen</p>
+    <>
+      <Container>
+        <div>
+          <div className="title-post">
+            <h1>Neue Nachricht erstellen</h1>
+            <p>Achten auf Beschränkungen</p>
+          </div>
         </div>
-      </div>
 
-      <Formik 
-        validationSchema={Yup.object({ 
-          title: Yup.string()
-                      .required("Titel erforderlich"),
-          channel: Yup.string()
-                      .required("Channel erforderlich")
-                      .matches(/#.*/, "Channename muss mit # beginnen."),
-          pub_date: Yup.date()
-                      .typeError("kein gültiges Datum")
-                      .required("Publikationsdatum erforderlich")
-                      .min(new dayjs(), 'Publikationsdatum liegt in der Vergangenheit.')
-                      .max((new dayjs()).add(2,'year'), 'Publikationsdatum liegt zu weit in der Zukunft'), 
-          text: Yup.string()
-                      .required("Text erforderlich")
-        })}
-  
-        onSubmit={(values, {setSubmitting}) => {
-          console.log(values);
-          onSubmit(values);
-        }}
-  
-        initialValues={initialValues}
-      >
-        {({handleSubmit, handleChange, handleBlur, values, errors}) => (
-              <Form noValidate onSubmit={handleSubmit} >
-                <Form.Group className="mb-3" >
-                  <Form.Label>Titel</Form.Label>
-                    <Form.Control type="text" name="title" placeholder="Titel" value={values.title} onChange={handleChange} onBlur={handleBlur} />
-                      <div className="text-danger">{errors.title}</div>
-                        <p></p>
-                  <Form.Label>Channel</Form.Label>
-                    <Form.Control type="text" name="channel" placeholder="#Channel" value={values.channel}  onChange={handleChange} onBlur={handleBlur} />
-                      <div className="text-danger">{errors.channel}</div>
-                        <p></p>
-                  <Form.Label>Publikationsdatum</Form.Label>
-                    <Form.Control type="datetime-local" name="pub_date" placeholder="Publikationsdatum" value={values.pub_date} onChange={handleChange} onBlur={handleBlur} />
-                      <div className="text-danger">{errors.pub_date}</div>
-                        <p></p>
-                  <Form.Group className="mb-3"  >
-                    <Form.Label>Text</Form.Label>
-                      <Form.Control as="textarea" rows={3} name="text" value={values.text} onChange={handleChange} onBlur={handleBlur} />
-                        <div className="text-danger">{errors.text}</div>
+    <Card className="Card-Create">
+        <Formik 
+          validationSchema={Yup.object({ 
+            title: Yup.string()
+                        .required("Titel erforderlich"),
+            channel: Yup.string()
+                        .required("Channel erforderlich")
+                        .matches(/#.*/, "Channename muss mit # beginnen."),
+            pub_date: Yup.date()
+                        .typeError("kein gültiges Datum")
+                        .required("Publikationsdatum erforderlich")
+                        .min(new dayjs(), 'Publikationsdatum liegt in der Vergangenheit.')
+                        .max((new dayjs()).add(2,'year'), 'Publikationsdatum liegt zu weit in der Zukunft'), 
+            text: Yup.string()
+                        .required("Text erforderlich")
+          })}
+    
+          onSubmit={(values, {setSubmitting}) => {
+            console.log(values);
+            onSubmit(values);
+          }}
+    
+          initialValues={initialValues}
+        >
+          {({handleSubmit, handleChange, handleBlur, values, errors}) => (
+                <Form noValidate onSubmit={handleSubmit}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Titel</Form.Label>
+                      <Form.Control type="text" name="title" placeholder="Titel" value={values.title} onChange={handleChange} onBlur={handleBlur} />
+                        <div className="text-danger">{errors.title}</div>
+                          <p></p>
+                    <Form.Label>Channel</Form.Label>
+                      <Form.Control type="text" name="channel" placeholder="#Channel" value={values.channel}  onChange={handleChange} onBlur={handleBlur} />
+                        <div className="text-danger">{errors.channel}</div>
+                          <p></p>
+                    <Form.Label>Publikationsdatum</Form.Label>
+                      <Form.Control type="datetime-local" name="pub_date" placeholder="Publikationsdatum" value={values.pub_date} onChange={handleChange} onBlur={handleBlur} />
+                        <div className="text-danger">{errors.pub_date}</div>
+                          <p></p>
+                    <Form.Group className="mb-3"  >
+                      <Form.Label>Text</Form.Label>
+                        <Form.Control as="textarea" rows={3} name="text" value={values.text} onChange={handleChange} onBlur={handleBlur} />
+                          <div className="text-danger">{errors.text}</div>
+                    </Form.Group>
                   </Form.Group>
-                </Form.Group>
-                  <Button className="m-2" type="submit" to="/posts">
-                    Speichern 
-                  </Button>
-                  <Button className="m-2" onClick={handleCancel} variant="danger">
-                    Abbrechen 
-                  </Button>
-              </Form>
-        )}
-      </Formik>
-    </Container>
+                  <div className="btnForm">
+                    <Button className="m-2" type="submit" to="/posts">
+                      Speichern 
+                    </Button>
+                    <Button className="m-2" onClick={handleCancel} variant="danger">
+                      Abbrechen 
+                    </Button>
+                  </div>
+                </Form>
+          )}
+        </Formik>
+    </Card>
+      </Container>
+    </>
   );
 
 }
