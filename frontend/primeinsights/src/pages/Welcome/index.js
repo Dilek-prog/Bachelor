@@ -1,77 +1,90 @@
 import "./styles.css";
 import Container from "react-bootstrap/esm/Container";
-import Accordion from "react-bootstrap/Accordion";
+import Card from 'react-bootstrap/Card';
+import Button from "react-bootstrap/Button";
 
 export default function WelcomePage({ token }) {
   return (
-    <Container className="main">
-      <section className="">
-        <h1>Willkommen in PrimeInsights</h1>
-        <p>
-          Um Verwaltung, internen sowie externen Professor:innen,
-          Dozent:innen und wissenschaftliche Mitarbeiter:innen eine Möglichkeit
-          zu bieten, <span className="hglt">ohne die Slack-App</span> auf ihren
-          Endgeräten Nachrichten zu posten, wurde die PrimeInsights-Webanwendung
-          programmiert.
-        </p>
-      </section>
-      <section>
-        <h1>Vision</h1>
-        <p>
-          Die Handhabung unserer Anwendung ist
-          <span className="hglt">unkompliziert</span> und für den Laien
-          <span className="hglt">gut verständlich</span>. Zudem sind nur
-          notwendige Anwendungen und Funktionen vorhanden, um eine
-          <span className="hglt">einfache Bedienung</span> zu gewährleisten.
-          Anders als Produkte der Wettbewerber ist unsere Anwendung auf das
-          wenstlichste fokussiert und als OpenSource-APM kostenfrei.
-        </p>
-      </section>
-      <section>
-        <h1>Technologien</h1>
-        <p>
-          Im Folgenden werden die verwendeten Technologien und Frameworks
-          aufgelistet:
-        </p>
-        <Accordion>
-          <Accordion.Item eventKey="0">
-            <Accordion.Header>React</Accordion.Header>
-            <Accordion.Body>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Accordion.Body>
-          </Accordion.Item>
-          <Accordion.Item eventKey="1">
-            <Accordion.Header>React Bootstrap</Accordion.Header>
-            <Accordion.Body>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Accordion.Body>
-          </Accordion.Item>
-          <Accordion.Item eventKey="2">
-            <Accordion.Header>Django</Accordion.Header>
-            <Accordion.Body>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Accordion.Body>
-          </Accordion.Item>
-        </Accordion>
-      </section>
+    <>
+    <div className="FullScreen">
+      <Container className="main1">
+        <div className="Containerright">
+          <section>
+            <h1 className="Welcome"><strong>Willkommen in PrimeInsights</strong></h1>
+            <p><strong>
+              Du möchtest Nachrichten an Slack von überall und ohne Slack App an deine Kollegen oder Studenten verschicken?</strong>
+            </p>
+          </section>
+          <section>
+            <p><strong>
+              Dann ist die PrimeInsights Web-Applikation die Lösung.</strong>
+            </p>
+          </section>
+          <div className="btn-w">
+            <Button className="btn-light" variant="light" size="lg" href="#Info">Infos</Button>
+            <Button className="btn-primary"variant="primary" size="lg" href="/create">Post erstellen</Button>
+          </div>
+        </div>
+      </Container>
+    </div>
+    <Container className="main1">
+        <div id="Info">
+          <section className="ueberschrifth1">
+            <h1><u>Warum PrimeInsights?</u></h1>
+          </section>
+        </div>
+      <section className="card-container">
+      <Card style={{ width: '18rem' }} className="card">
+        <Card.Body>
+          <Card.Title>Adressaten</Card.Title>
+          <Card.Text className="text-Card">
+            <ul>
+                <li>
+                      externe / interne Professoren und Dozenten 
+                </li>
+                <li>
+                      Studierende 
+                </li>
+                <li>
+                      Wissenschaftliche Mitarbeiter
+                </li>
+            </ul>
+          </Card.Text>
+        </Card.Body>
+      </Card> 
+      <Card style={{ width: '18rem' }}>
+        <Card.Body>
+          <Card.Title>Vision</Card.Title>
+          <Card.Text className="text-Card1">
+          Die Handhabung der Anwendung ist
+            <span className="hglt">unkompliziert</span> und für den Anwender gut verständlich.
+         
+          </Card.Text>
+        </Card.Body>
+      </Card> 
+      <Card style={{ width: '18rem' }}>
+        <Card.Body>
+          <Card.Title>Technologien</Card.Title>
+          <Card.Text className="text-Card2">
+            <ul>
+                <li>
+                    React
+                </li>
+                <li>
+                    React Bootstrap 
+                </li>
+                <li>
+                    Django
+                </li>
+                <li>
+                    Django Restframework
+                </li>
+            </ul>
+          </Card.Text>
+        </Card.Body>
+      </Card>
+      </section> 
     </Container>
+  </>
   );
 } 
