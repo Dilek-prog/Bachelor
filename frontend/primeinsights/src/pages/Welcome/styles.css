@@ -73,13 +73,14 @@ section p {
   margin-top: 50px;
 }
 
-.card {
+.cardbody {
   flex-basis: calc(33.33% - 20px);
   margin-bottom: 18%;
   padding: 15px;
   border: 3px solid #76B900;
   border-radius: 10px;
   box-sizing: border-box;
+  box-shadow: 3px 3px 3px #76B900;
 }
 
 .text-Card {
