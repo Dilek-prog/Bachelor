@@ -68,10 +68,14 @@ html, body {
 }
 
 .post-detail-container {
-    background-color: aliceblue;
-    padding: 0 1rem;
+    background-color: rgb(255, 255, 255);
+    padding: 35px;
     margin: 3rem auto 6rem;
-    max-width: 55rem;
+    max-width: 40rem;
+    box-shadow: 1px 1px 5px 5px #76B900;
+    border-radius: 7px;
+    margin-bottom: 12%;
+    margin-top: 5%;
 }
 
 .edit-btn-detail {
@@ -80,6 +84,7 @@ html, body {
 
 .post-detail-button-group {
     padding: 20px 0px 30px 4px;
+    margin-top: 20px;
 }
 
 .buttton-abbrechen {
@@ -200,4 +205,8 @@ html, body {
 
 .btnForm {
     margin-top: 30px;
+}
+
+.impressum {
+    color: #000000;
 }
