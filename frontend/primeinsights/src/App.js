@@ -75,7 +75,12 @@ function PostDetails({ token }) {
   
   return (
     <>
-      <Container fluid className="post-detail-container">
+        <div>
+          <div className="title-post">
+            <h1>Detailübersicht</h1>
+          </div>
+        </div>
+      <Container fluid className="post-detail-container" style={{padding: "35px"}}>
         <h1>{post.title}</h1>
         
         <div>erstellt am {post.created.format('DD.MM.YYYY')}</div>
@@ -489,41 +494,15 @@ function Homepage({ token }) {
               </p>
             </div>
 
-            <div className="col-md-3 mb-md-0 mb-3">
-              <h6 className="text-uppercase">Links</h6>
-              <ul className="list-unstyled">
-                <li>
-                  <a href="#!">Link 1</a>
-                </li>
-                <li>
-                  <a href="#!">Link 2</a>
-                </li>
-                <li>
-                  <a href="#!">Link 3</a>
-                </li>
-                <li>
-                  <a href="#!">Link 4</a>
-                </li>
-              </ul>
-            </div>
-
           <div className="col-md-3 mb-md-0 mb-3">
-            <h6 className="text-uppercase">Kontaktinformationen</h6>
-
-                Dilek Ogur
-                <br/>
-                Köpenicker str. 101
-                <br/>
-                10179 Berlin
-
-
+            <h6 className="text-uppercase"></h6>
+            <a href="/impressum" className="impressum">Impressum</a>
           </div>
         </div>
       </div>
 
       <div className="footer-copyright text-center py-3">
-        © 2023 Copyright:{' '}
-        <a href="https://example.com/">PrimeInsights</a>
+        © 2023 Copyright: <a href="https://example.com/">PrimeInsights</a>
       </div>
     </footer>
     </>
