@@ -173,7 +173,7 @@ function EditPostForm({onSubmit, initialValues}) {
       <Container>
         <div>
           <div className="title-post">
-            <h1>Neue Nachricht erstellen</h1>
+            <h1>Nachricht erstellen</h1>
             <p>Achten auf Beschränkungen</p>
           </div>
         </div>
@@ -379,7 +379,7 @@ function PostList({ token }) {
       </div>
 
       <Container className="table-container">
-        <Table striped bordered hover className="shaow-lg text-center">
+        <Table striped bordered hover id="example" className="shaow-lg text-center">
           <thead>
             <tr>
               <th>Titel</th>
