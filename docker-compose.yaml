@@ -6,6 +6,18 @@ services:
         build: ./backend
         env_file: secrets.env
         volumes: 
-            - ./backend/slackbridge/db.sqlite3:/app/db.sqlite3
-        ports: 
-            - "8000:8000"
+            - ./backend/slackbridge/db.sqlite3:/app/db.sqlite3:z
+
+    frontend:
+        container_name: pifrontend
+        image: nginx:alpine 
+        volumes: 
+            - ./frontend/primeinsights/build:/usr/share/nginx/html:z
+
+    proxy:
+        container_name: piproxy
+        image: nginx:alpine 
+        volumes: 
+            - ./proxy/nginx.conf:/etc/nginx/nginx.conf:z
+        ports:
+            - "8080:80"
