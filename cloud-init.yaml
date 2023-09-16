@@ -1,0 +1,45 @@
+#cloud-config
+groups:
+  - docker
+users:
+  - name: root
+    passwd: $6$rounds=4069$0iN1oVMS.kdClCXL$oovR4bD6xyY.iGEi2cYBJlLMi2EsE2ocdn0UA8vdScZv7sMqDEq6Bql8/k2zlIoGEpvthAO00gIGr60Q.t0lS.
+  - name: dilek
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAfQ/FU2uRaAiK37ExgZ3V7onwWYkUj8id8T8s2Cxnqp dilek@Dileks-MacBook-Air.local
+    groups: docker
+
+chpasswd: {expire: False}
+
+apt:
+  sources:
+    docker.list:
+      source: deb [arch=amd64] https://download.docker.com/linux/ubuntu $RELEASE stable
+      keyid: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - docker-ce
+  - docker-ce-cli
+  - docker-compose
+  - fish
+  - git
+
+runcmd:
+  - sed -i -e '/^\(#\|\)PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
+  - sed -i -e '/^\(#\|\)PasswordAuthentication/s/^.*$/PasswordAuthentication no/' /etc/ssh/sshd_config
+  - sed -i -e '/^\(#\|\)X11Forwarding/s/^.*$/X11Forwarding no/' /etc/ssh/sshd_config
+  - sed -i -e '/^\(#\|\)MaxAuthTries/s/^.*$/MaxAuthTries 2/' /etc/ssh/sshd_config
+  - sed -i -e '/^\(#\|\)AllowTcpForwarding/s/^.*$/AllowTcpForwarding no/' /etc/ssh/sshd_config
+  - sed -i -e '/^\(#\|\)AllowAgentForwarding/s/^.*$/AllowAgentForwarding no/' /etc/ssh/sshd_config
+  - sed -i -e '/^\(#\|\)AuthorizedKeysFile/s/^.*$/AuthorizedKeysFile .ssh\/authorized_keys/' /etc/ssh/sshd_config
+  - sed -i '$a AllowUsers dilek' /etc/ssh/sshd_config
+  - systemctl enable docker
+  - chsh -s $(which fish) dilek
+  - chsh -s $(which fish) root
+  - reboot
+
+output: {all: '| tee -a /var/log/cloud-init-output.log'}
