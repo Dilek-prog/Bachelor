@@ -19,5 +19,7 @@ services:
         image: nginx:alpine 
         volumes: 
             - ./proxy/nginx.conf:/etc/nginx/nginx.conf:z
+            - ./proxy/nginx-selfsigned.crt:/etc/ssl/certs/nginx-selfsigned.crt:z
+            - ./proxy/nginx-selfsigned.key:/etc/ssl/certs/nginx-selfsigned.key:z
         ports:
             - "443:443"
