@@ -22,11 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-@5li9an*$=#-c8aweg+u&wlxq)9rmn5++=nu&+b!qfl!+#7d2_"
+SECRET_KEY = "hc8c6xusj+Ppj/C3DICAZRumPnkzRCVn8tEVO5fClUY="
 SLACK_API_TOKEN = os.environ.get("SLACK_API_TOKEN", "")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
