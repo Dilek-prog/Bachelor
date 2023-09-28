@@ -33,14 +33,14 @@ export default function LoginPage({ onReceivedToken }) {
 
   return (
     <div className="bg">
-      { <a href="https://www.htw-berlin.de/" target="_blank"><img
+      { <a href="https://www.htw-berlin.de/" target="_blank" className="logo-desktop"><img
         className="logo"
         src={process.env.PUBLIC_URL + "/img/logo.jpg"}
         alt="Logo"
         height={75}
       /></a>}
 
-      { <a href="https://www.htw-berlin.de/" target="_blank"><img
+      { <a href="https://www.htw-berlin.de/" target="_blank" className="logo-desktop"><img
         className="logo-mobile"
         src={process.env.PUBLIC_URL + "/img/logo-mobile.png"}
         alt="Logo"
@@ -60,14 +60,13 @@ export default function LoginPage({ onReceivedToken }) {
         PrimeInsights
       </h1>
 
-      <div className="title-mobile">
-      <b>
-        Willkommen bei PrimeInsights
-      </b>
-      </div>
-
       <Container className="floating-login">
         <div className="d-grid gap-2">
+        <div className="title-mobile">
+        <b>
+        Willkommen bei PrimeInsights
+        </b>
+      </div>
           <Card.Title className="text-center text-light login-title">Anmeldung</Card.Title>
           <Form.Control
             type="text"
