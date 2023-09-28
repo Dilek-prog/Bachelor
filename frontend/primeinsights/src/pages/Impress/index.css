@@ -1,0 +1,9 @@
+.impressum {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.impressum p {
+    margin-bottom: 0;
+}
