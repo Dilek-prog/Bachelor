@@ -2,6 +2,7 @@ import "./styles.css";
 import Container from "react-bootstrap/esm/Container";
 import Card from 'react-bootstrap/Card';
 import Button from "react-bootstrap/Button";
+import { Link } from 'react-router-dom';
 
 export default function WelcomePage({ token }) {
   return (
@@ -22,7 +23,7 @@ export default function WelcomePage({ token }) {
           </section>
           <div className="btn-w">
             <Button className="btn-light" variant="light" size="lg" href="#Info">Infos</Button>
-            <Button className="btn-primary"variant="primary" size="lg" href="/create">Post erstellen</Button>
+            <Link to="/create"><Button className="btn-primary"variant="primary" size="lg">Post erstellen</Button></Link>
           </div>
         </div>
       </Container>
