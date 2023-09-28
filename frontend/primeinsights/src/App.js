@@ -28,6 +28,7 @@ import { Link } from 'react-router-dom';
 import { getPosts, login, getPost, deletePost, createPost, updatePost } from './Api';
 import LoginPage from './pages/Login';
 import WelcomePage from './pages/Welcome';
+import ImpressPage from './pages/Impress';
 
 
 dayjs.extend(relativeTime);
@@ -158,7 +159,7 @@ function DeleteButton({token, id, onSuccess}) {
   )
 }
 
-function EditPostForm({onSubmit, initialValues}) {
+function EditPostForm({onSubmit, initialValues, title}) {
   const navigate = useNavigate();
 
   function handleCancel(){
@@ -171,7 +172,7 @@ function EditPostForm({onSubmit, initialValues}) {
       <Container>
         <div>
           <div className="title-post">
-            <h1>Nachricht erstellen</h1>
+            <h1>{title}</h1>
             <p>Achten auf Beschränkungen</p>
           </div>
         </div>
@@ -282,7 +283,7 @@ function UpdatePost({token}) {
 
   return (
     <>
-     <EditPostForm onSubmit={ updateMutation.mutate } initialValues={post}/>
+     <EditPostForm onSubmit={ updateMutation.mutate } initialValues={post} title="Nachricht bearbeiten"/>
     </>
   );
 }
@@ -305,7 +306,7 @@ function CreatePost({ token }) {
   });
 
   return (
-    <EditPostForm onSubmit={ createMutation.mutate } initialValues={{ title: '', channel: '', pub_date: '', text: ''}}/>
+    <EditPostForm onSubmit={ createMutation.mutate } initialValues={{ title: '', channel: '', pub_date: '', text: ''}} title="Nachricht erstellen"/>
   )
 
 }
@@ -477,6 +478,7 @@ function Homepage({ token }) {
           <Route path='*' element={<WelcomePage token={token} />} />
           <Route path='/create' element={<CreatePost token={token}/>} />
           <Route path='/posts/:id/edit' element={<UpdatePost token={token} />} />
+          <Route path='/impressum' element={<ImpressPage/>} />
         </Routes>
         <div className="push"></div>
       </div>
@@ -494,7 +496,7 @@ function Homepage({ token }) {
 
           <div className="col-md-3 mb-md-0 mb-3">
             <h6 className="text-uppercase"></h6>
-            <a href="/impressum" className="impressum">Impressum</a>
+            <Link to="/impressum"><a className="impressum">Impressum</a></Link>
           </div>
         </div>
       </div>
