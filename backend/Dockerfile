@@ -16,4 +16,4 @@ RUN crontab /etc/cron.d/post-cron
 
 EXPOSE 8000
 
-CMD printenv > /etc/environment && cron && python3 /app/manage.py runserver 0.0.0.0:8000 
+CMD printenv > /etc/environment && cron && python3 /app/manage.py runserver 0.0.0.0:8000 --insecure
