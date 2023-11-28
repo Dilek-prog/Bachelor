@@ -78,7 +78,7 @@ export default function WelcomePage({ token }) {
                     Django
                 </li>
                 <li>
-                    Django Restframework
+                    Django Rest Framework
                 </li>
             </ul>
           </Card.Text>
