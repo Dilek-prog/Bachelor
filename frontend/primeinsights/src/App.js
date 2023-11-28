@@ -141,7 +141,7 @@ function DeleteButton({token, id, onSuccess}) {
         <Modal.Header closeButton>
           <Modal.Title>Wirklich löschen?</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Bist du sicher, dass du den Post wirklich löschen willst?</Modal.Body>
+        <Modal.Body>Bist du sicher, dass du die Nachricht wirklich löschen willst?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClickCancelDelete}>
             Abbrechen
