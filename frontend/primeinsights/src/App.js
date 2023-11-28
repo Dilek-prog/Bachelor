@@ -55,13 +55,13 @@ function PostDetails({ token }) {
 
   if (isLoading) {
     return (
-      <div>Post wird geladen :D</div>
+      <div>Nachricht wird geladen :D</div>
     );
   };
 
   if (isError) {
     return (
-      <div>Post konnte nicht geladen werden. :(</div>
+      <div>Nachricht konnte nicht geladen werden. :(</div>
     );
   };
 
@@ -371,7 +371,7 @@ function PostList({ token }) {
     <>
     <Container className="main">
       <div className="title-post">
-        <h1>Hier siehst du deine erstellten Posts</h1>
+        <h1>Hier siehst du deine erstellten Nachrichten</h1>
           <div>
             Für die Detail Übersicht auf den jeweiligen <u>Titel</u> klicken.
           </div>
@@ -453,8 +453,8 @@ function Homepage({ token }) {
                 <Navbar.Collapse id="responsive-navbar-nav">
                   <Nav className="me-auto">
                     <Nav.Link as={Link} to="/" style={{color: 'black',textDecoration: 'none'}} href="#home">Home</Nav.Link>
-                    <Nav.Link as={Link} to="/posts" style={{color: 'black',textDecoration: 'none'}} href="#Ansicht">Posts</Nav.Link>
-                    <Nav.Link as={Link} to="/create" style={{color: 'black',textDecoration: 'none'}} href="#create">Post erstellen</Nav.Link>
+                    <Nav.Link as={Link} to="/posts" style={{color: 'black',textDecoration: 'none'}} href="#Ansicht">Nachrichtenliste</Nav.Link>
+                    <Nav.Link as={Link} to="/create" style={{color: 'black',textDecoration: 'none'}} href="#create">Nachricht erstellen</Nav.Link>
                   </Nav>
                   <Nav>
                     <Button

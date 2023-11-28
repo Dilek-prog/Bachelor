@@ -23,7 +23,7 @@ export default function WelcomePage({ token }) {
           </section>
           <div className="btn-w">
             <Button className="btn-light" variant="light" size="lg" href="#Info">Infos</Button>
-            <Link to="/create"><Button className="btn-primary"variant="primary" size="lg">Post erstellen</Button></Link>
+            <Link to="/create"><Button className="btn-primary"variant="primary" size="lg">Nachricht erstellen</Button></Link>
           </div>
         </div>
       </Container>
