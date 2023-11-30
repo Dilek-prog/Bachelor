@@ -453,7 +453,7 @@ function Homepage({ token }) {
                 <Navbar.Collapse id="responsive-navbar-nav">
                   <Nav className="me-auto">
                     <Nav.Link as={Link} to="/" style={{color: 'black',textDecoration: 'none'}} href="#home">Home</Nav.Link>
-                    <Nav.Link as={Link} to="/posts" style={{color: 'black',textDecoration: 'none'}} href="#Ansicht">Nachrichtenliste</Nav.Link>
+                    <Nav.Link as={Link} to="/posts" style={{color: 'black',textDecoration: 'none'}} href="#Ansicht">Übersicht</Nav.Link>
                     <Nav.Link as={Link} to="/create" style={{color: 'black',textDecoration: 'none'}} href="#create">Nachricht erstellen</Nav.Link>
                   </Nav>
                   <Nav>
