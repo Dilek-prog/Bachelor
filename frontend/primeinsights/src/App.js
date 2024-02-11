@@ -489,9 +489,6 @@ function Homepage({ token }) {
           <div className="row">
             <div className="col-md-6 mt-md-0 mt-3">
               <h5 className="text-uppercase text-primary">PrimeInsights</h5>
-              <p>
-                Here you can use rows and columns to organize your footer content.
-              </p>
             </div>
 
           <div className="col-md-3 mb-md-0 mb-3">
