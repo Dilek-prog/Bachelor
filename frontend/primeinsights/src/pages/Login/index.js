@@ -57,14 +57,14 @@ export default function LoginPage({ onReceivedToken }) {
 
       <h1 className="title">
         Willkommen bei <br />
-        PrimeInsights
+        Primeinsights
       </h1>
 
       <Container className="floating-login">
         <div className="d-grid gap-2">
         <div className="title-mobile">
         <b>
-        Willkommen bei PrimeInsights
+        Willkommen bei Primeinsights
         </b>
       </div>
           <Card.Title className="text-center text-light login-title">Anmeldung</Card.Title>

@@ -11,14 +11,14 @@ export default function WelcomePage({ token }) {
       <Container className="main1">
         <div className="Containerright">
           <section>
-            <h1 className="Welcome"><strong>Willkommen in PrimeInsights</strong></h1>
+            <h1 className="Welcome"><strong>Willkommen in Primeinsights</strong></h1>
             <p><strong>
               Du möchtest Nachrichten an Slack von überall und ohne Slack App an deine Kollegen oder Studenten verschicken?</strong>
             </p>
           </section>
           <section>
             <p><strong>
-              Dann ist die PrimeInsights Web-Applikation die Lösung.</strong>
+              Dann ist die Primeinsights Web-Applikation die Lösung.</strong>
             </p>
           </section>
           <div className="btn-w">
@@ -31,7 +31,7 @@ export default function WelcomePage({ token }) {
     <Container className="main1">
         <div id="Info">
           <section className="ueberschrifth1">
-            <h1><u>Warum PrimeInsights?</u></h1>
+            <h1><u>Warum Primeinsights?</u></h1>
           </section>
         </div>
       <section className="card-container">
