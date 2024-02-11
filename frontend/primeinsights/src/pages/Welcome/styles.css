@@ -105,6 +105,11 @@ section p {
 }
 
 @media screen and (max-width: 768px) {
+
+  .main1 {
+    flex-direction: column;
+  }
+  
   .card-container {
       flex-direction: column;
   }
