@@ -447,7 +447,7 @@ function Homepage({ token }) {
           >
           <Container>
             <Navbar.Brand as={Link} to="/" style={{ color: "#87BD20;", fontWeight: 550 }} href="#home">
-              PrimeInsights
+              Primeinsights
             </Navbar.Brand>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
@@ -499,7 +499,7 @@ function Homepage({ token }) {
       </div>
 
       <div className="footer-copyright text-center py-3">
-        © 2023 Copyright: <a href="https://example.com/">PrimeInsights</a>
+        © 2023 Copyright: <a href="https://example.com/">Primeinsights</a>
       </div>
     </footer>
     </>
