@@ -7,29 +7,32 @@ import { Link } from 'react-router-dom';
 export default function WelcomePage({ token }) {
   return (
     <>
-    <div className="FullScreen">
-      <Container className="main1">
-        <div className="Containerright">
-          <section>
-            <h1 className="Welcome"><strong>Willkommen in Primeinsights</strong></h1>
-            <p><strong>
-              Du möchtest Nachrichten an Slack von überall und ohne Slack App an deine Kollegen oder Studenten verschicken?</strong>
-            </p>
-          </section>
-          <section>
-            <p><strong>
-              Dann ist die Primeinsights Web-Applikation die Lösung.</strong>
-            </p>
-          </section>
-          <div className="btn-w">
-            <Button className="btn-light" variant="light" size="lg" href="#Info">Infos</Button>
-            <Link to="/create"><Button className="btn-primary"variant="primary" size="lg">Nachricht erstellen</Button></Link>
+    <div className="FullScreen main1">
+      <Container className="Containerright">
+        <div className="flex-container">
+          <div className="text-container">
+            <section className="row-justify-content-start">
+              <h1 className="Welcome"><strong> Willkommen in Primeinsights </strong></h1>
+              <p><strong>
+                Du möchtest Nachrichten an Slack von überall und ohne Slack-App an deine Kolleginnen oder Studentinnen verschicken? </strong>
+              </p>
+              <p><strong>
+                Dann ist die Primeinsights Web-Applikation die Lösung. </strong>
+              </p>
+            </section>
+            <div className="btn-w">
+              <Button className="btn-light" variant="light" size="lg" href="#Info">Infos</Button>
+              <Link to="/create"><Button className="btn-primary"variant="primary" size="lg"> Nachricht erstellen </Button></Link>
+            </div>
           </div>
-        </div>
+              <div className="image-container">
+                <img src={process.env.PUBLIC_URL + "/img/Webanwendung.png"} alt="Webanwendung" className="small-image" ></img>
+              </div>
+            </div>
       </Container>
     </div>
     <Container className="main1">
-        <div id="Info">
+        <div>
           <section className="ueberschrifth1">
             <h1><u>Warum Primeinsights?</u></h1>
           </section>
@@ -41,13 +44,13 @@ export default function WelcomePage({ token }) {
           <Card.Text className="text-Card">
             <ul>
                 <li>
-                      externe / interne Professoren und Dozenten 
+                      externe / interne Professorinnen und Dozenteninnen 
                 </li>
                 <li>
-                      Studierende 
+                      Studentinnen 
                 </li>
                 <li>
-                      Wissenschaftliche Mitarbeiter
+                      Wissenschaftliche Mitarbeiterinnen
                 </li>
             </ul>
           </Card.Text>
@@ -58,7 +61,7 @@ export default function WelcomePage({ token }) {
           <Card.Title>Vision</Card.Title>
           <Card.Text className="text-Card1">
           Die Handhabung der Anwendung ist
-            <span className="hglt">unkompliziert</span> und für den Anwender gut verständlich.
+            <span className="hglt">unkompliziert</span> und für die Anwenderin gut verständlich.
          
           </Card.Text>
         </Card.Body>
