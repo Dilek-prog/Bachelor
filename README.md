@@ -1,6 +1,6 @@
 # Primeinsights 
 
-# Implementation einer Webanwendung zur Automatisierung von Nachrichten mit der Schnittstelle Slack.
+### Implementation einer Webanwendung zur Automatisierung von Nachrichten mit der Schnittstelle Slack.
 
 Die Webseite 'Primeinsights.space' bietet eine Lösung zur vereinfachten Erfassung relevanter und irrelevanter Inhalte auf verschiedenen Plattformen an der HTW. Alle Nachrichten werden zeitgemäß und geplant in einem Workspace namens 'Bachelorarbeit' in einem zugeordneten Ziel-Channel veröffentlicht.
 
@@ -14,7 +14,11 @@ Die Webseite 'Primeinsights.space' bietet eine Lösung zur vereinfachten Erfassu
 
 
 ## Ergebnisse: 
-
+![Login der Nutzerin](/frontend/primeinsights/public/img/Login.png)
+![Startseite](/frontend/primeinsights/public/img/startseite.png)
+![Erstellen einer Nachricht](/frontend/primeinsights/public/img/Nachricht.png)
+![Übersichtliste](/frontend/primeinsights/public/img/uebersicht.png)
+![Veröffentlichung in Slack](/frontend/primeinsights/public/img/slack.png)
 
 
 ## Installationsschritte:
@@ -36,7 +40,7 @@ Die Webseite 'Primeinsights.space' bietet eine Lösung zur vereinfachten Erfassu
 Zur Überprüfung der Anwendung empfiehlt es sich, eine Integration mit dem Workspace 'Bachelorarbeit' vorzunehmen, um das Ergebnis der Veröffentlichung zu sehen. Die Adresse hierfür lautet: ‚https://join.slack.com/t/bachelorarbei-rxk9339/shared_invite/zt-284jm8kte-_sE0w3FH3B5eV_c0ZzavLA‘. 
 
 
-## Erforderliche Installationen für die Implementierung:
+# Erforderliche Installationen für die Implementierung:
 - Node.js,
 - Node Package Manager (npm),
 - Python
