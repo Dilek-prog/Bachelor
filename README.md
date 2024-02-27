@@ -6,18 +6,18 @@ Die Webseite 'Primeinsights.space' bietet eine Lösung zur vereinfachten Erfassu
 
 
 **Was man alles mit dem Tool machen kann:**
- 
-Nachrichten von der Webseite an eine Schnittstelle versenden 
-Nachrichten zeitgemäß und geplant unabhängig von der Nutzung mit Slack verschicken
-Ziel-Channel für das posten von Nachrichten benutzerspezifisch
-Nur das Posten von Nachrichten möglich 
+
+- Nachrichten von der Webseite an eine Schnittstelle versenden 
+- Nachrichten zeitgemäß und geplant unabhängig von der Nutzung mit Slack verschicken
+- Ziel-Channel für das posten von Nachrichten benutzerspezifisch
+- Nur das **Posten** von Nachrichten möglich 
 
 
-# Ergebnisse: 
+## Ergebnisse: 
 
 
 
-# Installationsschritte:
+## Installationsschritte:
 - Klone das Projekt 
 - Um es Lokal zu hosten, wird in der Datei backend/slackbridge/slackbridge/settings unter Allowed_hosts noch ‘“*”‘ geschrieben. 
 
@@ -36,7 +36,7 @@ Nur das Posten von Nachrichten möglich
 Zur Überprüfung der Anwendung empfiehlt es sich, eine Integration mit dem Workspace 'Bachelorarbeit' vorzunehmen, um das Ergebnis der Veröffentlichung zu sehen. Die Adresse hierfür lautet: ‚https://join.slack.com/t/bachelorarbei-rxk9339/shared_invite/zt-284jm8kte-_sE0w3FH3B5eV_c0ZzavLA‘. 
 
 
-# Erforderliche Installationen für die Implementierung:
+## Erforderliche Installationen für die Implementierung:
 - Node.js,
 - Node Package Manager (npm),
 - Python
