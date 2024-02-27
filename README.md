@@ -7,10 +7,10 @@ Die Webseite 'Primeinsights.space' bietet eine Lösung zur vereinfachten Erfassu
 
 **Was man alles mit dem Tool machen kann:**
 
-- Nachrichten von der Webseite an eine Schnittstelle versenden 
-- Nachrichten zeitgemäß und geplant unabhängig von der Nutzung mit Slack verschicken
-- Ziel-Channel für das posten von Nachrichten benutzerspezifisch
-- Nur das **Posten** von Nachrichten möglich 
+- Nachrichten von der Webseite an eine Slack-Schnittstelle versenden 
+- Nachrichten zeitgemäß und geplant, unabhängig von der Nutzung von Slack, verschicken
+- Benutzerspezifischer Ziel-Channel für das Posten von Nachrichten
+- Nur das **Posten** von Nachrichten ist möglich 
 
 
 ## Ergebnisse: 
@@ -51,8 +51,8 @@ Zur Überprüfung der Anwendung empfiehlt es sich, eine Integration mit dem Work
 
 
 # Ausblick für erweiterbare Ideen:
-- Update- und Delete-Funktion vom Backend nach Slack 
-- Slack-App erstellen, um diesen in verschiedene Workspaces hinzuzufügen 
+- Update- und Delete-Funktion vom Backend zu Slack senden 
+- Slack-App erstellen, um diese in verschiedene Workspaces hinzuzufügen 
 
 
 
