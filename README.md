@@ -17,11 +17,11 @@ Nur das Posten von Nachrichten möglich
 # Installationsschritte:
 - Klone das Projekt 
 - Um es Lokal zu hosten, wird in der Datei backend/slackbridge/slackbridge/settings unter Allowed_hosts noch ‘“*”‘ geschrieben. 
-*Backend starten (Terminal):* 
+**Backend starten (Terminal):** 
 - cd Bachelor/backend
 - source .venv/bin/activate
 - slackbridge/manage.py runserver
-*Frontend starten (Terminal):*
+**Frontend starten (Terminal):**
 - cd Bachelor/frontend/primeinsights
 - npm start
 
