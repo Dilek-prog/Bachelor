@@ -15,9 +15,13 @@ Die Webseite 'Primeinsights.space' bietet eine Lösung zur vereinfachten Erfassu
 
 ## Ergebnisse: 
 ![Login der Nutzerin](/frontend/primeinsights/public/img/Login.png)
+
 ![Startseite](/frontend/primeinsights/public/img/startseite.png)
+
 ![Erstellen einer Nachricht](/frontend/primeinsights/public/img/Nachricht.png)
+
 ![Übersichtliste](/frontend/primeinsights/public/img/uebersicht.png)
+
 ![Veröffentlichung in Slack](/frontend/primeinsights/public/img/slack.png)
 
 
